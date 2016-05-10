@@ -28,16 +28,16 @@ class RolesController extends Controller {
 
     public function store(CreateRolesRequest $request)
     {
-        dd($request->request);
-        $slug = str_replace(" ","",$request->get('name'));
-        dd($slug);
+        $slug = trim(str_replace(" ",".",$request->get('name')));
+
         $adminRole = Role::create([
             'name' => $request->get('name'),
-
-            'description' => '', // optional
+            'slug'=> $slug,
+            'description' => $request->get('description'), // optional
             'level' => 1, // optional, set to 1 by default
         ]);
-        dd($request->request);
+
+        return redirect()->route('rolesindex')->with('ok','Se creo correctamente el rol');
     }
 
 
