@@ -1,7 +1,7 @@
 <?php
 namespace app\Http\Controllers;
 
-use App\Http\Requests\CreateRolesRequest;
+use app\Http\Requests\CreateRolesRequest;
 use Bican\Roles\Models\Role;
 use Illuminate\Http\Request;
 
