@@ -1,0 +1,7 @@
+.idea
+recaptcha?keys.txt
+/vendor
+/node_modules
+Homestead.yaml
+.env
+.DS_Store

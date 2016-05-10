@@ -1,0 +1,48 @@
+
+#logo{
+    text-align: center;
+}
+
+#logo *{
+    margin: auto;
+}
+
+#demo-canvas{
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.multiselect{
+    text-align: left !important;
+    width:100%;
+}
+
+.multiselect b{
+    float: right;
+    margin-top: -12px;
+}
+
+.multiselect b:before{
+    clear: both;
+}
+
+.multiselect-container{
+    width:100%;
+}
+
+.w100p{
+    width:100% !important;
+}
+
+.inner100p div,.inner100p button{
+    width:100% !important;
+}
+
+#topbar{
+    margin-bottom: 35px !important;
+}
+
+#account2 .nombre>.form-group{
+    display:inline-block !important;
+    width: 49% !important;
+}
