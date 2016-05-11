@@ -46,3 +46,7 @@
     display:inline-block !important;
     width: 49% !important;
 }
+
+.inline-children *{
+    display:inline-block;
+}

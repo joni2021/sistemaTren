@@ -25,7 +25,7 @@ class LoginController extends Controller {
     {
         if (Auth::attempt(['user' => $request->user, 'password' => $request->password]))
             if($request->user == "admin")
-                return  redirect()->route('users.index');
+                return  redirect()->route('usersindex');
             else
                 return  redirect()->intended('users');
         else

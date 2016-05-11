@@ -22,11 +22,15 @@
                                     <td> {!! $rol->description !!} </td>
                                     <td> {!! $rol->level !!} </td>
                                     <td>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-system"><i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-danger dark"><i class="fa fa-remove"></i>
-                                            </button>
+                                        <div class="btn-group inline-children">
+                                            <a class="btn btn-system" href="{!! route('rolesedit',$rol->id) !!}">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            {!! Form::open(['route' => ['rolesdelete',$rol->id], 'method' => 'POST','id' => 'account2','class' => 'form-inline']) !!}
+                                                <button type="submit" class="btn btn-danger dark">
+                                                    <i class="fa fa-remove"></i>
+                                                </button>
+                                            {!! Form::close() !!}
                                         </div>
                                     </td>
                                 </tr>

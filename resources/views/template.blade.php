@@ -70,6 +70,9 @@
         @if(isset($errors))
             @include('mensajes/errors')
         @endif
+        @if(session()->has('ok'))
+            @include('mensajes/success')
+        @endif
 
         <div class="row mt25">
             @yield('content')
