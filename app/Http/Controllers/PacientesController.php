@@ -1,7 +1,7 @@
 <?php
 namespace app\Http\Controllers;
 
-class UsersController extends Controller {
+class PacientesController extends Controller {
 
 
     public function index()
@@ -10,6 +10,11 @@ class UsersController extends Controller {
     }
 
     public function create()
+    {
+        return view('pacientes.alta_paciente');
+    }
+
+    public function store()
     {
         return view('pacientes.alta_paciente');
     }
