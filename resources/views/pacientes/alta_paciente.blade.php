@@ -25,9 +25,9 @@
                             </div>
                             <div class="panel-body">
                                 @if(empty($paciente))
-                                    {!! Form::open(['route' => 'pacientes.create', 'method' => 'POST','class' => 'form-horizontal']) !!}
+                                    {!! Form::open(['route' => 'pacientescreate', 'method' => 'POST','class' => 'form-horizontal']) !!}
                                 @else
-                                    {!! Form::model($paciente,['route' => ['pacientes.update',$paciente], 'method' => 'PUT','class' => 'form-horizontal']) !!}
+                                    {!! Form::model($paciente,['route' => ['pacientesupdate',$paciente], 'method' => 'PUT','class' => 'form-horizontal']) !!}
                                 @endif
 
                                     <div class="form-group">

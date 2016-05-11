@@ -21262,7 +21262,8 @@ body.external-page {
 }
 body.external-page #main {
   overflow: hidden;
-  background: url("../../../img/patterns/backgrounds/1.jpg") repeat top center;
+  /*background: url("../../../img/patterns/backgrounds/1.jpg") repeat top center;*/
+  backgroud-color: #ddd;
 }
 body.external-page #main:before {
   display: none;

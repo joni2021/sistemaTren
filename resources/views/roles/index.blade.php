@@ -4,7 +4,7 @@
 
 
             <div class="table-responsive col-xs-12 col-md-10 col-md-offset-1">
-                <table class="table table-striped table-bordered table-responsive text-center">
+                <table class="table table-hover table-striped table-bordered table-responsive text-center">
                     <thead class="responsive">
                         <tr class="responsive bg-info">
                             <td>Nombre</td>
