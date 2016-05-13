@@ -26,7 +26,7 @@ class CreateRolesRequest extends Request
         return [
             'name' => 'required|string',
             'description' => 'string',
-            'level' => 'num'
+            'level' => 'numeric'
         ];
     }
 }
