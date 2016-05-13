@@ -19,7 +19,8 @@ require (__DIR__ . '/Routes/Auth.php');
 require (__DIR__ . '/Routes/UsersRoute.php');
 require (__DIR__ . '/Routes/RolesRoute.php');
 require (__DIR__ . '/Routes/PermisosRoute.php');
-
+require (__DIR__ . '/Routes/PacientesRoute.php');
+require (__DIR__ . '/Routes/PsicologiaRoute.php');
 
 
 

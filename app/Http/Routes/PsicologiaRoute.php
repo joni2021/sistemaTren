@@ -1,17 +1,18 @@
 <?php
 // modelo
-$model = 'users';
+$model = 'psicologia';
 
 Route::group(['prefix' => $model], function() use($model) {
 
     //var controlador
-    $controller = 'UsersController';
+    $controller = 'PsicologiaController';
 
     Route::get('/',[
+
+
         'as' => $model.'index',
         'uses' => $controller.'@index'
     ]);
-
 
     Route::get('create',[
         'as' => $model.'create',
@@ -23,22 +24,17 @@ Route::group(['prefix' => $model], function() use($model) {
         'uses' => $controller.'@store'
     ]);
 
-    Route::get('delete/{id}',[
-        'as' => $model.'delete',
-        'uses' => $controller.'@delete'
+    Route::get('edit',[
+        'as' => $model.'edit',
+        'uses' => $controller.'@edit'
     ]);
 
-    Route::get('edit/{id}',[
-       'as' => $model.'edit',
-       'uses' => $controller.'@edit'
 
-    ]);
-
-    Route::post('update/{id}',[
-
+    Route::post('update',[
         'as' => $model.'update',
         'uses' => $controller.'@update'
     ]);
+
 
 });
 

@@ -9,7 +9,8 @@
         "laravel/framework": "5.1.*",
         "laravelcollective/html": "5.1.*",
         "nesbot/carbon": "~1.14",
-        "bican/roles": "^2.1"
+        "bican/roles": "^2.1",
+        "barryvdh/laravel-debugbar": "^2.2"
 
     },
     "require-dev": {
