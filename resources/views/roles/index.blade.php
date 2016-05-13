@@ -8,6 +8,7 @@
                     <thead class="responsive">
                         <tr class="responsive bg-info">
                             <td>Nombre</td>
+                            <td>Slug</td>
                             <td>Descripción</td>
                             <td>Nivel</td>
                             <td>Acciones</td>
@@ -19,6 +20,7 @@
                             @foreach($roles as $rol)
                                 <tr class="responsive">
                                     <td> {!! $rol->name !!} </td>
+                                    <td> {!! $rol->slug !!} </td>
                                     <td> {!! $rol->description !!} </td>
                                     <td> {!! $rol->level !!} </td>
                                     <td>

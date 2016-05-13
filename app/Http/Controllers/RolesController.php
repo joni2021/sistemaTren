@@ -31,8 +31,6 @@ class RolesController extends Controller {
         $slug = trim($request->get('name'));
 //        dd($slug);
         $slug = $this->limpiarCaracteresEspeciales($slug);
-        dd($slug);
-
 
         $adminRole = $this->rol->create([
             'name' => $request->get('name'),
@@ -54,7 +52,12 @@ class RolesController extends Controller {
     public function update($id,CreateRolesRequest $request)
     {
         $data['rol'] = $this->rol->find($id);
+        if($data['rol']->name != $request->get('name')){
+            $slug = trim($request->get('name'));
+            $data['rol']->slug = $this->limpiarCaracteresEspeciales($slug);
+        }
         $data['rol']->fill($request->only('name','description','level'));
+
         if($data['rol']->save())
             return redirect()->route('rolesindex')->with('ok','Se modificó correctamente el rol');
         else
