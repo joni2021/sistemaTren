@@ -23,10 +23,15 @@
                                     <td> {!! $user->email !!} </td>
                                     <td>
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-system"><i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-danger dark"><i class="fa fa-remove"></i>
-                                            </button>
+                                            <a href="#" class="btn btn-system"><i class="fa fa-edit"></i> </a>
+
+                                            <a href="#" class="btn btn-danger"><i class="fa fa-remove"></i> </a>
+
+
+                                            {{--<a href="{{ route('usersedit', $user->id) }}" class="btn btn-system"><i class="fa fa-edit"></i> </a>--}}
+
+                                            {{--<a href="{{ route('usersdelete', $user->id) }}" class="btn btn-danger"><i class="fa fa-remove"></i> </a>--}}
+
                                         </div>
                                     </td>
                                 </tr>

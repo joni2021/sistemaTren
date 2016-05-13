@@ -8,7 +8,14 @@
                         <div class="dock-item" data-title="A Panel">
                                     <div class="panel">
                                         <div class="panel-body">
-                                            <div class="admin-form theme-info" id="login1">                                                                                                <form method="post" action="http://admindesigns.com/" id="account2">
+
+                                            @if(isset($model))
+                                                {!! Form::model($model,['route'=>['usersupdate',$model->id]]) !!}
+                                            @else
+                                                {!! Form::open(['route'=>'usersstore']) !!}
+                                            @endif
+
+                                            <div class="admin-form theme-info" id="login1">
                                                         <div class="panel-body p25 bg-light">
                                                             <div class="section-divider mt10 mb40">
                                                                 <span>Ingreso Nuevo Usuario</span>
@@ -18,7 +25,7 @@
                                                             <div class="section row">
                                                                 <div class="col-md-6">
                                                                     <label for="firstname" class="field prepend-icon">
-                                                                        <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Nombre">
+                                                                        {!! Form::text('name', null, array('class'=> 'gui-input', 'placeholder'=>'Nombre' )) !!}
                                                                         <label for="firstname" class="field-icon"><i class="fa fa-user"></i>
                                                                         </label>
                                                                     </label>
@@ -27,7 +34,7 @@
 
                                                                 <div class="col-md-6">
                                                                     <label for="lastname" class="field prepend-icon">
-                                                                        <input type="text" name="lastname" id="lastname" class="gui-input" placeholder="Apellido">
+                                                                        {!! Form::text('last_name', null, array('class'=> 'gui-input', 'placeholder'=>'Apellido' )) !!}
                                                                         <label for="lastname" class="field-icon"><i class="fa fa-user"></i>
                                                                         </label>
                                                                     </label>
@@ -38,7 +45,7 @@
 
                                                             <div class="section">
                                                                 <label for="email" class="field prepend-icon">
-                                                                    <input type="email" name="email" id="email" class="gui-input" placeholder="Email">
+                                                                    {!! Form::text('email', null, array('id' => 'email', 'class'=> 'gui-input', 'placeholder'=>'Email' )) !!}
                                                                     <label for="email" class="field-icon"><i class="fa fa-envelope"></i>
                                                                     </label>
                                                                 </label>
@@ -48,7 +55,7 @@
                                                             <div class="section">
                                                                 <div class="smart-widget sm-right">
                                                                     <label for="username" class="field prepend-icon">
-                                                                        <input type="text" name="username" id="username" class="gui-input" placeholder="Usuario">
+                                                                        {!! Form::text('user', null, array('class'=> 'gui-input', 'placeholder'=>'Usuario' )) !!}
                                                                         <label for="username" class="field-icon"><i class="fa fa-user"></i>
                                                                         </label>
                                                                     </label>
@@ -60,7 +67,7 @@
 
                                                             <div class="section">
                                                                 <label for="password" class="field prepend-icon">
-                                                                    <input type="text" name="password" id="password" class="gui-input" placeholder="Password">
+                                                                    {!! Form::password('password',array('class' => 'gui-input', 'placeholder'=>'Password' )) !!}
                                                                     <label for="password" class="field-icon"><i class="fa fa-lock"></i>
                                                                     </label>
                                                                 </label>
@@ -68,9 +75,9 @@
                                                             <!-- end section -->
 
                                                             <div class="section">
-                                                                <label for="confirmPassword" class="field prepend-icon">
-                                                                    <input type="text" name="confirmPassword" id="confirmPassword" class="gui-input" placeholder="Reingrese Password">
-                                                                    <label for="confirmPassword" class="field-icon"><i class="fa fa-unlock-alt"></i>
+                                                                <label for="password_confirmation" class="field prepend-icon">
+                                                                    {!! Form::password('password_confirmation',array('class' => 'gui-input', 'placeholder'=>'Reingrese Password' )) !!}
+                                                                    <label for="password_confirmation" class="field-icon"><i class="fa fa-unlock-alt"></i>
                                                                     </label>
                                                                 </label>
                                                             </div>
@@ -138,13 +145,11 @@
                                                         <!-- end .form-footer section -->
                                                     </form>
                                             </div>
+                                            {!! Form::close()!!}
                                         </div>
                                     </div>
                                 </div>
                     </div>
                 </div>
-
-
-
 
 @endsection

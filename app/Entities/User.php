@@ -8,17 +8,21 @@ use Auth;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Bican\Roles\Traits\HasRoleAndPermission;
 use Bican\Roles\Contracts\HasRoleAndPermission as HasRoleAndPermissionContract;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract, HasRoleAndPermissionContract
 {
     use Authenticatable, CanResetPassword, HasRoleAndPermission;
+//    use SoftDeletes;
 
     protected $table = 'users';
     protected $fillable = ['email', 'password', 'usuario','name','last_name'];
     protected $hidden = ['password', 'remember_token'];
+
+
+//    protected $dates = ['created_at', 'updated_at','deleted_at'];
 
     //Relaciones
     public function Personas()

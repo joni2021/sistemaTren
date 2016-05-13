@@ -134,7 +134,7 @@
                     </a>
                     <ul class="nav sub-nav">
                         <li>
-                            <a href="#">
+                            <a href="{!! route('pacientescreate')!!}">
                                 <span class="fa fa-caret-right text-primary"></span> Ingreso </a>
                         </li>
                     </ul>

@@ -1,8 +1,16 @@
 <?php
 namespace app\Http\Controllers;
-
+use app\Http\Repositories\PacienteRepo;
+use app\Http\Requests\CreatePacienteRequest;
+use Illuminate\Http\Request;
 class PacientesController extends Controller {
 
+    protected $pacienteRepo;
+
+    public function __construct(PacienteRepo $pacienteRepo)
+    {
+        $this->pacienteRepo = $pacienteRepo;
+    }
 
     public function index()
     {
@@ -11,11 +19,15 @@ class PacientesController extends Controller {
 
     public function create()
     {
+
         return view('pacientes.alta_paciente');
     }
 
-    public function store()
+    //public function store(CreatePacienteRequest $request)
+    public function store(Request $request)
     {
+        $this->pacienteRepo->create($request->all());
+
         return view('pacientes.alta_paciente');
     }
 

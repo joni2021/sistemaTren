@@ -17,7 +17,7 @@ Route::group(['prefix' => $model], function() use($model) {
         'uses' => $controller.'@create'
     ]);
 
-    Route::get('store',[
+    Route::post('store',[
         'as' => $model.'store',
         'uses' => $controller.'@store'
     ]);
