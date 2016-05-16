@@ -2,6 +2,7 @@
 
 namespace app\Entities;
 
+
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Auth;
@@ -11,6 +12,8 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Bican\Roles\Traits\HasRoleAndPermission;
 use Bican\Roles\Contracts\HasRoleAndPermission as HasRoleAndPermissionContract;
+use Bican\Roles\Models\Role;
+
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract, HasRoleAndPermissionContract
 {
@@ -18,7 +21,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 //    use SoftDeletes;
 
     protected $table = 'users';
-    protected $fillable = ['email', 'password', 'usuario','name','last_name'];
+    protected $fillable = ['email', 'password', 'user','name','last_name'];
     protected $hidden = ['password', 'remember_token'];
 
 
@@ -33,6 +36,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function MovimientoSubsidio()
     {
         return $this->hasMany(MovimientoSubsidio::getClass());
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::getClass());
     }
 
     // Mutators

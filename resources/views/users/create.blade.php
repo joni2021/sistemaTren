@@ -89,55 +89,37 @@
                                                             <!-- .section-divider -->
 
                                                             <div class="section mb15">
-                                                                <div class="radio-custom square mb5">
-                                                                    <input type="radio" id="radioExample13" name="tipo_user">
-                                                                    <label for="radioExample13">Administrador</label>
-                                                                </div>
-                                                                <div class="radio-custom square radio-primary mb5">
-                                                                    <input type="radio" id="radioExample14" name="tipo_user">
-                                                                    <label for="radioExample14">Logistica</label>
-                                                                </div>
-                                                                <div class="radio-custom square radio-success mb5">
-                                                                    <input type="radio" id="radioExample15" name="tipo_user">
-                                                                    <label for="radioExample15">Social</label>
-                                                                </div>
-                                                                <div class="radio-custom square radio-info mb5">
-                                                                    <input type="radio" id="radioExample16" name="tipo_user">
-                                                                    <label for="radioExample16">Médico Clinico</label>
-                                                                </div>
-                                                                <div class="radio-custom square radio-warning mb5">
-                                                                    <input type="radio" id="radioExample17" name="tipo_user">
-                                                                    <label for="radioExample17">Odontólogo</label>
-                                                                </div>
-                                                                <div class="radio-custom square radio-danger mb5">
-                                                                    <input type="radio" id="radioExample18" name="tipo_user">
-                                                                    <label for="radioExample18">Oftalmólogo</label>
-                                                                </div>
-                                                                <div class="radio-custom square radio-alert mb5">
-                                                                    <input type="radio" id="radioExample19" name="tipo_user">
-                                                                    <label for="radioExample19">Ginecólogo</label>
-                                                                </div>
-                                                                <div class="radio-custom square radio-system mb5">
-                                                                    <input type="radio" id="radioExample20" name="tipo_user">
-                                                                    <label for="radioExample20">Obstetra</label>
-                                                                </div>
-                                                                <div class="radio-custom square radio-system mb5">
-                                                                    <input type="radio" id="radioExample21" name="tipo_user">
-                                                                    <label for="radioExample21">Psicólogo</label>
-                                                                </div>
-                                                                <div class="radio-custom square radio-system mb5">
-                                                                    <input type="radio" id="radioExample22" name="tipo_user">
-                                                                    <label for="radioExample22">Nutricionista</label>
-                                                                </div>
-                                                                <div class="radio-custom square radio-system mb5">
-                                                                    <input type="radio" id="radioExample23" name="tipo_user">
-                                                                    <label for="radioExample23">Radiologo</label>
-                                                                </div>
 
+                                                                @if(isset($model))
+                                                                    @foreach($roles as $rol)
+
+                                                                        <div class="form-group">
+                                                                            <div class="col-sm-12 pl15">
+                                                                                <input type="checkbox" name="role_id[]" value="{{$rol}}"  {{ $rol  ? 'checked' : '' }}>
+                                                                                <label for="checkboxExample20">{{ $rol->name }}</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    @endforeach
+                                                                @else
+                                                                    @if($roles->count() > 0)
+
+                                                                        <div class="form-group">
+                                                                            <div class="col-sm-12 pl15">
+
+                                                                                @foreach($roles as $rol)
+                                                                                <div>
+                                                                                    <input type="checkbox" name="role_id[]" id="checkboxExample20" value="{{$rol->id}}">
+                                                                                    <label for="checkboxExample20">{{ $rol->name }}</label>
+                                                                                </div>
+                                                                                @endforeach
+
+                                                                            </div>
+                                                                        </div>
+                                                                    @endif
+                                                                @endif
                                                             </div>
                                                             <!-- end section -->
-
-                                                        </div>
+                                                         </div>
                                                         <!-- end .form-body section -->
                                                         <div class="panel-footer clearfix">
                                                             <button type="submit" class="button btn-primary pull-right">Crear Usuario</button>
