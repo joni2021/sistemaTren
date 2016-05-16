@@ -19,9 +19,25 @@ Route::group(['prefix' => $model], function() use($model) {
     ]);
 
 
+    Route::get('{id}/edit',[
+        'as' => $model.'edit',
+        'uses' => $controller.'@edit'
+    ]);
+
+
     Route::post('store',[
         'as' => $model.'store',
         'uses' => $controller.'@store'
+    ]);
+
+    Route::put('{id}/update',[
+        'as' => $model.'update',
+        'uses' => $controller.'@update'
+    ]);
+
+    Route::post('{id}/delete',[
+        'as' => $model.'delete',
+        'uses' => $controller.'@delete'
     ]);
 
 });

@@ -8,8 +8,8 @@
                     <thead class="responsive">
                         <tr class="responsive bg-info">
                             <td>Nombre</td>
-                            <td>Usuario</td>
-                            <td>Email</td>
+                            <td>Slug</td>
+                            <td>Detalle</td>
                             <td>Acciones</td>
                         </tr>
                     </thead>
@@ -18,15 +18,19 @@
                         @if($permisos->count() > 0)
                             @foreach($permisos as $permiso)
                                 <tr class="responsive">
-                                    {{--<td> {!! $permiso->fullName !!} </td>--}}
-                                    {{--<td> {!! $permiso->user !!} </td>--}}
-                                    {{--<td> {!! $permiso->email !!} </td>--}}
+                                    <td> {!! $permiso->name !!} </td>
+                                    <td> {!! $permiso->slug !!} </td>
+                                    <td> {!! $permiso->description !!} </td>
                                     <td>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-system"><i class="fa fa-edit"></i>
+                                        <div class="btn-group inline-children">
+                                            <a class="btn btn-system" href="{!! route('permisosedit',$permiso->id) !!}">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            {!! Form::open(['route' => ['permisosdelete',$permiso->id], 'method' => 'POST','id' => 'account2','class' => 'form-inline']) !!}
+                                            <button type="submit" class="btn btn-danger dark">
+                                                <i class="fa fa-remove"></i>
                                             </button>
-                                            <button type="button" class="btn btn-danger dark"><i class="fa fa-remove"></i>
-                                            </button>
+                                            {!! Form::close() !!}
                                         </div>
                                     </td>
                                 </tr>
