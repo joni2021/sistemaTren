@@ -1,8 +1,6 @@
 @extends('template')
 
 @section('content')
-
-
                 <div class="col-md-9 center-block">
                     <div id="dock-panel">
                         <div class="dock-item" data-title="A Panel">
@@ -95,7 +93,7 @@
 
                                                                         <div class="form-group">
                                                                             <div class="col-sm-12 pl15">
-                                                                                <input type="checkbox" name="role_id[]" value="{{$rol}}"  {{ $rol  ? 'checked' : '' }}>
+                                                                                <input type="checkbox" name="role_id[]" value="{{$rol->id}}"  {{ $model->isOne($rol->id)  ? 'checked' : '' }}>
                                                                                 <label for="checkboxExample20">{{ $rol->name }}</label>
                                                                             </div>
                                                                         </div>

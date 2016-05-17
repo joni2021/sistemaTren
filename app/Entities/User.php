@@ -2,7 +2,6 @@
 
 namespace app\Entities;
 
-
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Auth;
@@ -38,10 +37,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->hasMany(MovimientoSubsidio::getClass());
     }
 
-    public function roles()
-    {
-        return $this->belongsToMany(Role::getClass());
-    }
 
     // Mutators
     public function setPasswordAttribute($value)

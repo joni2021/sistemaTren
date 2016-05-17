@@ -16,6 +16,7 @@
                     <tbody>
                         @if($users->count() > 0)
                             @foreach($users as $user)
+
                                 <tr class="responsive">
                                     <td> {!! $user->fullName !!} </td>
                                     <td> {!! $user->user !!} </td>
