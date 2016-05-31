@@ -25,6 +25,8 @@ require (__DIR__ . '/Routes/PsicologiaRoute.php');
 
 
 
+
+
 $router->get('example', [
     'as' => 'example',
     'middleware' => 'user:admin',

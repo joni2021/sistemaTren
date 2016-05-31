@@ -2,34 +2,11 @@
 
 namespace app\Entities;
 
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
-use Auth;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-
-use Bican\Roles\Traits\HasRoleAndPermission;
-use Bican\Roles\Contracts\HasRoleAndPermission as HasRoleAndPermissionContract;
-
-class Paciente extends Model implements AuthenticatableContract, CanResetPasswordContract, HasRoleAndPermissionContract
+class Paciente extends Entity
 {
-    use Authenticatable, CanResetPassword, HasRoleAndPermission;
-
     protected $table = 'paciente';
     protected $fillable = ['dni', 'tipo_dni', 'nombre','apellido', 'sexo', 'fecha_nacimiento','telefono', 'id_nacionalidad', 'id_lugar_nacimiento','lectura', 'escritura', 'hijos_mayores','hijos_menores', 'enfermedad_cronica', 'enfermedad_rs','discapacidad', 'tipo_discapacidad', 'presion_arterial_max','presion_arterial_min', 'glusemia', 'colesterol','perimetro_abdominal', 'perimetro_craneal', 'percentilo','imc', 'pco','altura', 'peso', 'talla','observaciones'];
 
-
-    //Relaciones
-    public function Personas()
-    {
-        return $this->hasMany(Persona::getClass());
-    }
-
-    public function MovimientoSubsidio()
-    {
-        return $this->hasMany(MovimientoSubsidio::getClass());
-    }
 
     // Mutators
     public function setPasswordAttribute($value)
@@ -56,5 +33,11 @@ class Paciente extends Model implements AuthenticatableContract, CanResetPasswor
             $query->orWhere('apellido', 'like', "%$search%");
 
     }
+
+      public function getFullNamePacienteAttribute()
+    {
+        return $this->apellido .', '. $this->nombre;
+    }
+
 
 }
