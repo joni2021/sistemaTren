@@ -58,6 +58,21 @@
                     </li>
                 </ul>
             </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="glyphicons glyphicons-train fs20"></span>
+                </a>
+                <ul class="dropdown-menu m-left" role="menu">
+                    <li>
+                        <a href="{!! route('comisionesindex') !!}">
+                            <span class="glyphicons glyphicons-list pr20 text-info"></span> Comisiones </a>
+                    </li>
+                    <li>
+                        <a href="{!! route('comisionescreate') !!}">
+                            <span class="glyphicon glyphicon-plus pr5 text-info-dark"></span> Nueva comisión </a>
+                    </li>
+                </ul>
+            </li>
 
         </ul>
 

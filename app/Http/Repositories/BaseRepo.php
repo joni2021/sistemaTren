@@ -7,7 +7,7 @@
  */
 
 namespace app\Http\Repositories;
-use app\Entities\Persona;
+
 
 abstract class BaseRepo {
 
@@ -47,7 +47,5 @@ abstract class BaseRepo {
     {
         return $this->model->lists($data, $id);
     }
-
-
 
 }

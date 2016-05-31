@@ -16,13 +16,16 @@ use Bican\Roles\Models\Role;
 use Bican\Roles\Models\Permission;
 
 require (__DIR__ . '/Routes/Auth.php');
-require (__DIR__ . '/Routes/UsersRoute.php');
-require (__DIR__ . '/Routes/RolesRoute.php');
-require (__DIR__ . '/Routes/PermisosRoute.php');
-require (__DIR__ . '/Routes/PacientesRoute.php');
-require (__DIR__ . '/Routes/PsicologiaRoute.php');
 
+Route::group(['prefix' => '','middleware' => 'auth'], function() {
+    require(__DIR__ . '/Routes/UsersRoute.php');
+    require(__DIR__ . '/Routes/RolesRoute.php');
+    require(__DIR__ . '/Routes/PermisosRoute.php');
+    require(__DIR__ . '/Routes/PacientesRoute.php');
+    require(__DIR__ . '/Routes/PsicologiaRoute.php');
+    require(__DIR__ . '/Routes/ComisionesRoute.php');
 
+});
 
 
 $router->get('example', [

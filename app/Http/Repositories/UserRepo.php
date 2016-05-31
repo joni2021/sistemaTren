@@ -24,6 +24,14 @@ class UserRepo extends BaseRepo {
         return $qry;
     }
 
+    public function listing()
+    {
+        $qry = $this->model->orderBy('name')
+            ->list();
+
+        return $qry;
+    }
+
 
 
 

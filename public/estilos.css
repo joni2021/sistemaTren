@@ -50,3 +50,13 @@
 .inline-children *{
     display:inline-block;
 }
+
+.w75p{
+    width: 75% !important;
+    margin: 0 !important;
+}
+
+.w25p{
+    width: 25% !important;
+    margin-left: -2px !important;
+}

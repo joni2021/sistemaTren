@@ -23,20 +23,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     protected $fillable = ['email', 'password', 'user','name','last_name'];
     protected $hidden = ['password', 'remember_token'];
 
-
-//    protected $dates = ['created_at', 'updated_at','deleted_at'];
-
-    //Relaciones
-    public function Personas()
-    {
-        return $this->hasMany(Persona::getClass());
+    public function Comision(){
+        return $this->belongsToMany(Comision::class);
     }
-
-    public function MovimientoSubsidio()
-    {
-        return $this->hasMany(MovimientoSubsidio::getClass());
-    }
-
 
     // Mutators
     public function setPasswordAttribute($value)

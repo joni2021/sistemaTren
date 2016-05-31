@@ -32,15 +32,19 @@
 
     <link rel="stylesheet" type="text/css" href="estilos.css">
 
+    @yield('css')
+
     <!-- jQuery -->
+    {{--<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>--}}
     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
     <!-- Bootstrap -->
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    {{--<script type="text/javascript" src="vendor/jquery/jquery_ui/jquery-ui.min.js"></script>--}}
     <script type="text/javascript" src="js/jquery-ui.js"></script>
 
     <!-- Google Map API -->
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-
+    {{--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&signed_in=true&libraries=places&callback=initMap"></script>--}}
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=true&amp;language=es&amp;components=country:AR"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -93,28 +97,72 @@
 <script type="text/javascript" src="assets/js/pages/login/TweenLite.min.js"></script>
 <script type="text/javascript" src="assets/js/pages/login/login.js"></script>
 
+<!-- Google Map API -->
+{{--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>--}}
+
+
+<!-- Bootstrap -->
+<script type="text/javascript" src="vendor/plugins/map/gmaps.min.js"></script>
+<script type="text/javascript" src="vendor/plugins/gmap/jquery.ui.map.min.js"></script>
+<script type="text/javascript" src="vendor/plugins/gmap/ui/jquery.ui.map.services.js"></script>
+<script type="text/javascript" src="vendor/plugins/gmap/ui/jquery.ui.map.extensions.js"></script>
+<script type="text/javascript" src="vendor/plugins/gmap/ui/jquery.ui.map.microformat.js"></script>
+<!-- Page Plugins via CDN -->
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/globalize/0.1.1/globalize.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.js"></script>
 <!-- Theme Javascript -->
 <script type="text/javascript" src="assets/js/utility/utility.js"></script>
 <script type="text/javascript" src="assets/js/main.js"></script>
 <script type="text/javascript" src="assets/js/demo.js"></script>
 
-<!-- Page Javascript -->
-<script type="text/javascript">
-    jQuery(document).ready(function() {
 
-        "use strict";
+    <!-- Page Javascript -->
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
 
-        // Init Theme Core
-        Core.init();
+            "use strict";
 
-        // Init Demo JS
-        Demo.init();
+            // Init Theme Core
+            Core.init();
+
+            // Init Demo JS
+            Demo.init();
 
 
-    });
-</script>
+        });
+    </script>
+
+
+
+    <script>
+
+        $(document).ready(function(){
+
+            // daterange plugin options
+            var rangeOptions = {
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+                    'Last 7 Days': [moment().subtract('days', 6), moment()],
+                    'Last 30 Days': [moment().subtract('days', 29), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+                },
+                startDate: moment().subtract('days', 29),
+                endDate: moment()
+            }
+
+
+            // Init daterange plugin
+            $('#daterangepicker1').daterangepicker();
+
+        });
+
+
+    </script>
 
 @yield('js')
+
 
 <!-- END: PAGE SCRIPTS -->
 
