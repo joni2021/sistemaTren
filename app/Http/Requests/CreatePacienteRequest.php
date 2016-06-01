@@ -1,7 +1,6 @@
 <?php
 
 namespace app\Http\Requests;
-
 use app\Http\Requests\Request;
 
 class CreatePacienteRequest extends Request
@@ -24,8 +23,13 @@ class CreatePacienteRequest extends Request
     public function rules()
     {
         return [
+           // 'tipo_dni' => 'required',
+           // 'dni' => 'required|integer',
             'nombre' => 'required',
-            'apellido' => 'required'
+            'apellido' => 'required',
+            'sexo' => 'required',
+            'fecha_nacimiento' => 'required',
+            'telefono' => 'integer'
 
         ];
     }
@@ -33,8 +37,12 @@ class CreatePacienteRequest extends Request
     public function messages()
     {
         return [
-            'nombre.required'   => 'Nombre obligatorio',
-            'apellido.required' => 'Apellido obligatorio'
+           // 'tipo_dni' => 'Seleccione un tipo de dni',
+           // 'dni.integer' => 'El dni debe ser numerico',
+            'nombre.required'   => 'Escriba un nombre',
+            'apellido.required' => 'Escriba un apellido',
+            'sexo.required' => 'Selecciona el sexo',
+            'telefono.integer' => 'El telefono debe ser numerico'
         ];
     }
 

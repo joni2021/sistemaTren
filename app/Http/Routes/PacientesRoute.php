@@ -33,6 +33,28 @@ Route::group(['prefix' => $model], function() use($model) {
         'uses' => $controller.'@update'
     ]);
 
+    //derivaciones de los turnos
+    Route::get('derivaciones', [
+
+        'as' => $model.'derivaciones',
+        'uses' => $controller.'@derivaciones'
+
+    ]);
+
+    Route::post('postDerivaciones',[
+
+        'as' => $model.'postDerivaciones',
+        'uses' => $controller.'@postDerivaciones'
+
+    ]);
+
+    //asignacion del turno
+    Route::get('turnoAsignado', [
+
+        'as' => $model.'turnoAsignado',
+        'uses' => $controller.'@turnoAsignado'
+
+    ]);
 
 });
 

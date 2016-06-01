@@ -28,6 +28,8 @@ Route::group(['prefix' => '','middleware' => 'auth'], function() {
 });
 
 
+
+
 $router->get('example', [
     'as' => 'example',
     'middleware' => 'user:admin',

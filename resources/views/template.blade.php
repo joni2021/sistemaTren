@@ -115,6 +115,9 @@
 <script type="text/javascript" src="assets/js/main.js"></script>
 <script type="text/javascript" src="assets/js/demo.js"></script>
 
+ <!-- Bootstrap -->
+    <script type="text/javascript" src="assets/js/bootstrap/bootstrap.min.js"></script>
+
 
     <!-- Page Javascript -->
     <script type="text/javascript">

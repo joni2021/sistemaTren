@@ -32,15 +32,15 @@
                             <label for="multiselect4" class="col-lg-3 control-label">Tipo DNI:</label>
                             <div class="col-md-9">
                                 <label class="radio-inline mr10">
-                                    <input type="radio" name="tipo_dni" id="inlineRadio1" value="DNI">DNI</label>
+                                    <input type="radio" name="tipo_dni" id="inlineRadio2" value="1">DNI</label>
                                 <label class="radio-inline mr10">
-                                    <input type="radio" name="tipo_dni" id="inlineRadio2" value="LC">LC</label>
+                                    <input type="radio" name="tipo_dni" id="inlineRadio2" value="2">LC</label>
                                 <label class="radio-inline mr10">
-                                    <input type="radio" name="tipo_dni" id="inlineRadio3" value="LE">LE</label>
+                                    <input type="radio" name="tipo_dni" id="inlineRadio3" value="3">LE</label>
                                 <label class="radio-inline mr10">
-                                    <input type="radio" name="tipo_dni" id="inlineRadio4" value="Cedula">Cedula</label>
+                                    <input type="radio" name="tipo_dni" id="inlineRadio4" value="4">Cedula</label>
                                 <label class="radio-inline mr10">
-                                    <input type="radio" name="tipo_dni" id="inlineRadio5" value="Pasaporte">Pasaporte</label>
+                                    <input type="radio" name="tipo_dni" id="inlineRadio5" value="5">Pasaporte</label>
                             </div>
                         </div>
 
@@ -66,7 +66,11 @@
                         <div class="form-group">
                             <label for="inputPassword" class="col-lg-3 control-label">Sexo:</label>
                             <div class="col-lg-8">
-                                <input type="text" class="form-control" id="inputPassword" name="sexo" >
+                                    <label class="radio-inline mr10">
+                                    <input type="radio" name="sexo" id="inlineRadio5" value="1">Masculino</label>
+
+                                    <label class="radio-inline mr10">
+                                    <input type="radio" name="tipo_dni" id="inlineRadio5" value="2">Femenino</label>
                             </div>
                         </div>
                         <div class="form-group">
@@ -93,16 +97,29 @@
                                 <input type="text" class="form-control" id="inputPassword" name="id_lugar_nacimiento" >
                             </div>
                         </div>
+
                         <div class="form-group">
-                            <label for="inputPassword" class="col-lg-3 control-label">Sabe Leer:</label>
-                            <div class="col-lg-8">
-                                <input type="text" class="form-control" id="inputPassword" name="lectura" >
+                            <label class="col-md-3 control-label">Sabe leer:</label>
+                            <div class="col-md-9">
+                                <div class="switch switch-info switch-inline">
+                                    <input id="exampleCheckboxSwitch1" type="checkbox" checked="" name="lectura">
+                                    <label for="exampleCheckboxSwitch1"></label>
+                                </div>
+
                             </div>
                         </div>
+
+                            
+
+
+
                         <div class="form-group">
                             <label for="inputPassword" class="col-lg-3 control-label">Sabe Escribir:</label>
                             <div class="col-lg-8">
-                                <input type="text" class="form-control" id="inputPassword" name="escritura">
+                                <div class="switch switch-info switch-inline">
+                                    <input id="exampleCheckboxSwitch2" type="checkbox" checked="" name="escritura" >
+                                    <label for="exampleCheckboxSwitch2"></label>
+                                </div>
                             </div>
                         </div>
 
