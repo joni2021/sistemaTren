@@ -77,8 +77,8 @@
                             <div class="section row">
                                 <div class="col-xs-12">
 
-                                    {{--{!! Form::select('user_id[]',$user, 'users' ,['id' => 'users','multiple' => 'multiple']) !!}--}}
-                                    <select name="user_id[]" id="users" multiple="multiple"></select>
+                                    {!! Form::select('user_id[]',$user, 'users' ,['id' => 'users','multiple' => 'multiple']) !!}
+                                    {{--<select name="user_id[]" id="users" multiple="multiple"></select>--}}
                                 </div>
                                 <!-- end section -->
 
@@ -113,14 +113,9 @@
             <script type="text/javascript" src="assets/admin-tools/admin-forms/js/jquery.stepper.min.js"></script>
     <script>
 
-        var usrs = {!! $user !!};
-
         // Form Skin Switcher
         $(".btn-modal").on('click', function(ev) {
             ev.preventDefault();
-
-            $("#users").removeChild();
-
             var self = $(this);
             var id = $(self).attr('data-id');
 
@@ -133,43 +128,32 @@
             $.get(location.href+"/"+id+"/consultarUsuarios",{_token: $("meta[name='csrf-token']").attr('content'), id: id},function(ev){
                 usuarios = ev;
 
-                for(var x in usrs){
-                    $("#users").append("<option value='"+x+"'");
-                }
-
-               if(usuarios != ""){
+                if(usuarios != ""){
 //                   if($('#formAsignarUsuarios').find(".multiselect-container li").hasClass('active')){
 //                       $('#formAsignarUsuarios').find(".multiselect-container li").removeClass('active');
 //                   }
 
-                   for(var i in  usuarios){
-                       for(var e in usrs){
-                           console.log("<option>");
-                           if(usuarios[i] == usrs[e]){
-                               console.log("<option selected='selected'>");
-                           }
-                       }
+                    for(var i in usuarios){
+                        $("#users option").each(function(ev){
+                            if(this.firstChild.data == usuarios[i]){
+                                $(this).attr("selected","selected");
 
-//                        $("#users option").each(function(ev){
-//                            if(this.firstChild.data == usuarios[i]){
-//                                $(this).attr("selected","selected");
-
-//                                var opt = $(this);
+                                var opt = $(this);
 
 
-//                                $('#formAsignarUsuarios').find(".multiselect-container li").each(function(ev){
-//                                    if($(this).find("input[type='checkbox']").val() == $(opt).val()){
-//                                        $(this).addClass('active');
-////                                        $(this).find("input[type='checkbox']").prop("checked",true);
-//                                        $(this).find("a").click();
-//                                        console.log($(this).find("a"));
-//                                    }
-//
-//
-//                                });
-//                            }
-//                        });
-                   }
+                                $('#formAsignarUsuarios').find(".multiselect-container li").each(function(ev){
+                                    if($(this).find("input[type='checkbox']").val() == $(opt).val()){
+                                        $(this).addClass('active');
+//                                        $(this).find("input[type='checkbox']").prop("checked",true);
+                                        $(this).find("a").click();
+                                        console.log($(this).find("a"));
+                                    }
+
+
+                                });
+                            }
+                        });
+                    }
                }
 
                 $('#users').multiselect({
