@@ -1,7 +1,12 @@
 @extends('template')
 @section('content')
 
-    <h2 class="lh30 mt15 text-center"><b class="text-primary">Su Turno </b>fue asignado correctamente.</h2>
+    <h2 class="lh30 mt15 text-center"><b class="text-primary">Su Turno </b>fue asignado correctamente
+        @if($turno->prioridad == true)
+            <b class="text-primary">con Prioridad. </b>
+        @endif
+
+    </h2>
 
     <div class="row">
         <div class="col-md-9 center-block">

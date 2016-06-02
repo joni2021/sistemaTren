@@ -25,6 +25,26 @@ class TurnoRepo extends BaseRepo
 
     }
 
+    public function asignPrioridad($value)
+    {
+        if(is_null($value))
+            return 0;
+        else
+            return 1;
+
+    }
+
+
+    public function turnoPorEspecialidad()
+    {
+            return Turno::where('especialidades_id', 1);
+
+//        return $this->model->where('especialidades_id', $value);
+    }
+
+
+
+
 
 //            $turno = $this->turnoRepo->all();
 //

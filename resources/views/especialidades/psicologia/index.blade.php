@@ -2,16 +2,33 @@
 
 @section('content')
 
+    <div class="col-md-10 center-block">
+
+        <header id="topbar">
+            <div class="topbar-left">
+                <ol class="breadcrumb">
+                    <li class="crumb-active">
+                        <h2>Especialidad Psicología</h2>
+                    </li>
+                </ol>
+            </div>
+        </header>
+
+    </div>
+
     <div class="table-responsive col-xs-12 col-md-10 col-md-offset-1">
         <table class="table table-hover table-striped table-bordered table-responsive text-center">
             <thead class="responsive">
             <tr class="responsive bg-info">
                 <td>#</td>
                 <td>Paciente</td>
+                <td></td>
                </tr>
             </thead>
 
             <tbody>
+
+            {{--https://github.com/joni2021/sistemaTren.git--}}
 
                     <tr class="responsive">
                         <td> 1 </td>

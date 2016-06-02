@@ -22,8 +22,17 @@ Route::group(['prefix' => '','middleware' => 'auth'], function() {
     require(__DIR__ . '/Routes/RolesRoute.php');
     require(__DIR__ . '/Routes/PermisosRoute.php');
     require(__DIR__ . '/Routes/PacientesRoute.php');
-    require(__DIR__ . '/Routes/PsicologiaRoute.php');
     require(__DIR__ . '/Routes/ComisionesRoute.php');
+    require(__DIR__ . '/Routes/Especialidades/PsicologiaRoute.php');
+    require(__DIR__ . '/Routes/Especialidades/NeurologiaRoute.php');
+    require(__DIR__ . '/Routes/Especialidades/CardiologiaRoute.php');
+    require(__DIR__ . '/Routes/Especialidades/MedicaRoute.php');
+    require(__DIR__ . '/Routes/Especialidades/TraumatologiaRoute.php');
+    require(__DIR__ . '/Routes/Especialidades/GinecologiaRoute.php');
+    require(__DIR__ . '/Routes/Especialidades/OdontologiaRoute.php');
+    require(__DIR__ . '/Routes/Especialidades/OtorrinolaringologiaRoute.php');
+    require(__DIR__ . '/Routes/Especialidades/OftalmologiaRoute.php');
+
 
 });
 
