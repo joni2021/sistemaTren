@@ -166,39 +166,39 @@
                     </a>
                     <ul class="nav sub-nav">
                         <li>
-                            <a href="#">
+                            <a href="{!! route('medicaindex') !!}">
                                 <span class="glyphicons glyphicons-warning_sign"></span> Clínica médica </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{!! route('psicologiaindex') !!}">
                                 <span class="glyphicons glyphicons-dislikes"></span> Psicólogía </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{!! route('cardiologiaindex') !!}">
                                 <span class="glyphicons glyphicons-macbook"></span> Cardiología </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{!! route('otorrinolaringologiaindex')!!}">
                                 <span class="glyphicons glyphicons-check"></span> Otorrinolaringología </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{!! route('neurologiaindex')!!}">
                                 <span class="glyphicons glyphicons-adjust_alt"></span> Neurología </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{!! route('oftalmologiaindex')!!}">
                                 <span class="glyphicons glyphicons-podium"></span> Oftalmología </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{!! route('odontologiaindex') !!}">
                                 <span class="glyphicons glyphicons-fabric"></span> Odontología </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{!! route('traumatologiaindex')!!}">
                                 <span class="glyphicons glyphicons-more_items"></span> Traumatología </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{!! route('ginecologiaindex')!!} ">
                                 <span class="glyphicons glyphicons-rabbit"></span> Ginecología </a>
                         </li>
                     </ul>

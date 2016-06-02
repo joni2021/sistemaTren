@@ -2,18 +2,18 @@
 /**
  * Created by PhpStorm.
  * User: llrocha
- * Date: 13/05/2016
- * Time: 11:22
+ * Date: 01/06/2016
+ * Time: 11:59
  */
+
 namespace app\Http\Controllers\Especialidad;
 use app\Http\Controllers\Controller;
 
-
-class NeurologiaController extends Controller {
+class TraumatologiaController extends Controller {
 
     public function index()
     {
-        return view('especialidades.neurologia.index');
+        return view('especialidades.traumatologia.index');
 
     }
 

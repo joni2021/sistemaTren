@@ -8,7 +8,7 @@
             <div class="topbar-left">
                 <ol class="breadcrumb">
                     <li class="crumb-active">
-                        <h2>Especialidad Cardiología</h2>
+                        <h2>Especialidad Neurologia</h2>
                     </li>
                 </ol>
             </div>

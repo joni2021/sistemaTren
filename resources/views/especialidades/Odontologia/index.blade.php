@@ -8,7 +8,7 @@
             <div class="topbar-left">
                 <ol class="breadcrumb">
                     <li class="crumb-active">
-                        <h2>Especialidad Cardiología</h2>
+                        <h2>Especialidad Odontologia</h2>
                     </li>
                 </ol>
             </div>
@@ -16,12 +16,14 @@
 
     </div>
 
+
     <div class="table-responsive col-xs-12 col-md-10 col-md-offset-1">
         <table class="table table-hover table-striped table-bordered table-responsive text-center">
             <thead class="responsive">
             <tr class="responsive bg-info">
                 <td>#</td>
                 <td>Paciente</td>
+                <td>Turno</td>
                 <td></td>
                </tr>
             </thead>
@@ -30,9 +32,13 @@
 
             {{--https://github.com/joni2021/sistemaTren.git--}}
 
+                    @foreach($turnos as $turno)
+
+
                     <tr class="responsive">
-                        <td> 1 </td>
-                        <td> Perez, jorge </td>
+                        <td></td>
+                        <td>{{ $turno->Paciente->getFullNamePacienteAttribute() }}  </td>
+                        <td>{{ $turno->turno }} </td>
                         <td>
                             <div class="btn-group">
                                 <button type="button" class="btn btn-system"><i class="fa fa-edit"></i>
@@ -42,7 +48,7 @@
                             </div>
                         </td>
                     </tr>
-
+                    @endforeach
                 <tr class="responsive bg-info">
                     <td colspan="4" class="text-danger"> No hay tipos de usuarios registrados </td>
                 </tr>

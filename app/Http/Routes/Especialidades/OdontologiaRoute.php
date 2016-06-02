@@ -1,14 +1,13 @@
 <?php
 // modelo
-$model = 'psicologia';
+$model = 'odontologia';
 
 Route::group(['prefix' => $model], function() use($model) {
 
     //var controlador
-    $controller = 'PsicologiaController';
+    $controller = 'Especialidad\OdontologiaController';
 
     Route::get('/',[
-
 
         'as' => $model.'index',
         'uses' => $controller.'@index'

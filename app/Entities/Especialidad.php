@@ -16,4 +16,6 @@ class Especialidad extends Entity
         return $this->belongsToMany(Turno::getClass(), 'especialidades_id');
     }
 
+
+
 }

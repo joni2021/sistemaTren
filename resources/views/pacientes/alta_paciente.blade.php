@@ -265,7 +265,7 @@
                             <div class="form-group" >
                                     <label for="inputPassword" class="col-lg-3 control-label">Observaciones:</label>
                                     <div class="col-lg-8">
-                                        <input type="text" class="form-control" id="inputPassword" name="observaciones">
+                                        <input type="text" class="form-control" id="inputPassword" name="observaciones" >
                                     </div>
                             </div>
 

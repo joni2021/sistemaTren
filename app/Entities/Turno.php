@@ -10,7 +10,7 @@ namespace app\Entities;
 class Turno extends Entity
 {
     protected $table = 'turnos';
-    protected $fillable = ['turno', 'especialidades_id', 'pacientes_id'];
+    protected $fillable = ['turno', 'especialidades_id', 'pacientes_id', 'prioridad'];
 
     public function Especialidad()
     {

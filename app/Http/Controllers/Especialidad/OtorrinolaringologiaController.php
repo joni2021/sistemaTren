@@ -9,11 +9,11 @@ namespace app\Http\Controllers\Especialidad;
 use app\Http\Controllers\Controller;
 
 
-class NeurologiaController extends Controller {
+class OtorrinolaringologiaController extends Controller {
 
     public function index()
     {
-        return view('especialidades.neurologia.index');
+        return view('especialidades.otorrinolaringologia.index');
 
     }
 

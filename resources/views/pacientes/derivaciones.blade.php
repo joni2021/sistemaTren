@@ -31,7 +31,8 @@
                         <div class="panel-footer clearfix">
 
                               <div class="checkbox-custom fill checkbox-primary mb5">
-                                    <input type="checkbox"  id="checkboxDefault13" name="prioridad">
+                                    <input type="checkbox"  id="checkboxDefault13" name="prioridad" value="1">
+
                                     <label for="checkboxDefault13">Turno prioritario</label>
 
                                 <button type="submit" class="button btn-primary pull-right">Asignar Turno</button>

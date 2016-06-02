@@ -1,5 +1,6 @@
 <?php
-namespace app\Http\Controllers;
+
+
 use app\Http\Repositories\EspecialidadRepo;
 use app\Http\Repositories\PacienteRepo;
 use app\Http\Repositories\TurnoRepo;
@@ -19,12 +20,23 @@ class PacientesController extends Controller {
 
     public function index()
     {
+
         return view('pacientes.alta_paciente');
     }
 
     public function create()
     {
 
+        return view('pacientes.alta_paciente');
+    }
+
+    public function edit()
+    {
+        return view('pacientes.alta_paciente');
+    }
+
+    public function update()
+    {
         return view('pacientes.alta_paciente');
     }
 
@@ -38,18 +50,10 @@ class PacientesController extends Controller {
 
     }
 
-    public function edit()
-    {
-        return view('pacientes.alta_paciente');
-    }
-
-    public function update()
-    {
-        return view('pacientes.alta_paciente');
-    }
 
     public function derivaciones($id = null )
     {
+
         //ultimo paciente insertado
         $paciente = $this->pacienteRepo->all()->last();
         $especialidades = $this->especialidadRepo->all();
@@ -58,13 +62,17 @@ class PacientesController extends Controller {
 
     public function postDerivaciones(Request $request)
     {
+
         //post derivacion
+        $prioridad = $this->turnoRepo->asignPrioridad($request->get('prioridad'));
         $nro_turno = $this->turnoRepo->asignTurno();
+
         $this->turnoRepo->create([
 
             'turno' => $nro_turno,
             'especialidades_id' => $request->get('especialidades_id'),
-            'pacientes_id' => $request->get('pacientes_id')
+            'pacientes_id' => $request->get('pacientes_id'),
+            'prioridad' => $prioridad
 
         ]);
 
