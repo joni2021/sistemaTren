@@ -112,60 +112,71 @@
             <script type="text/javascript" src="assets/admin-tools/admin-forms/js/jquery.spectrum.min.js"></script>
             <script type="text/javascript" src="assets/admin-tools/admin-forms/js/jquery.stepper.min.js"></script>
     <script>
+        $('#users').multiselect({
+            enableClickableOptGroups: true,
+            enableCollapsibleOptGroups: true,
+            enableFiltering: true,
+            includeSelectAllOption: true,
+            dropUp: true,
+            buttonWidth: '100%'
+        });
 
         // Form Skin Switcher
-        $(".btn-modal").on('click', function(ev) {
+        $(".btn-group").on('click','.btn-modal', function(ev) {
             ev.preventDefault();
+            var selecteds = 0;
+
+            var seleccionados = new Array();
+
+            if(seleccionados.length != 0){
+                $('#users').multiselect('deselect',seleccionados);
+                $('#users').multiselect('refresh');
+            }
+
             var self = $(this);
             var id = $(self).attr('data-id');
 
-//            $("#users option").attr("selected",false);
-
-//            $(".multiselect-container li").find("input[type='checkbox']").prop("checked",false);
-
             var usuarios = 0;
+//            $("#users option").each(function(ev){
+//                if($(this).attr("selected","selected")){
+//                    $('#users').multiselect('deselect_all');
+//                }
+
+//            });
+
 
             $.get(location.href+"/"+id+"/consultarUsuarios",{_token: $("meta[name='csrf-token']").attr('content'), id: id},function(ev){
                 usuarios = ev;
 
                 if(usuarios != ""){
-//                   if($('#formAsignarUsuarios').find(".multiselect-container li").hasClass('active')){
-//                       $('#formAsignarUsuarios').find(".multiselect-container li").removeClass('active');
-//                   }
-
                     for(var i in usuarios){
                         $("#users option").each(function(ev){
                             if(this.firstChild.data == usuarios[i]){
+                                seleccionados.push(i);
                                 $(this).attr("selected","selected");
 
-                                var opt = $(this);
+                                $('#users').multiselect('refresh');
 
+//                                var opt = $(this);
 
-                                $('#formAsignarUsuarios').find(".multiselect-container li").each(function(ev){
-                                    if($(this).find("input[type='checkbox']").val() == $(opt).val()){
-                                        $(this).addClass('active');
-//                                        $(this).find("input[type='checkbox']").prop("checked",true);
-                                        $(this).find("a").click();
-                                        console.log($(this).find("a"));
-                                    }
-
-
-                                });
+//                                $('#formAsignarUsuarios').find(".multiselect-container li").each(function(ev){
+//                                    if($(this).find("input[type='checkbox']").val() == $(opt).val()){
+//                                        $(this).addClass('active');
+////                                        $(this).find("input[type='checkbox']").prop("checked",true);
+//                                        $(this).find("a").click();
+//                                        console.log($(this).find("a"));
+//                                    }
+//
+//
+//                                });
                             }
                         });
                     }
                }
 
-                $('#users').multiselect({
-                    enableClickableOptGroups: true,
-                    enableCollapsibleOptGroups: true,
-                    enableFiltering: true,
-                    includeSelectAllOption: true,
-                    dropUp: true,
-                    buttonWidth: '100%'
-                });
-
             });
+
+//            $('#users').multiselect('refresh');
             // Inline Admin-Form example
             $.magnificPopup.open({
                 removalDelay: 500, //delay removal by X to allow out-animation,
@@ -176,22 +187,15 @@
                     beforeOpen: function(e) {
                         var Animation = $(self).attr('data-effect');
                         this.st.mainClass = Animation;
-
+//                        $('#users').multiselect('refresh');
                         $('#formAsignarUsuarios').attr('action',location.href+"/"+id+"/asignar");
 
-//                        $('#users').multiselect({
-//                            enableClickableOptGroups: true,
-//                            enableCollapsibleOptGroups: true,
-//                            enableFiltering: true,
-//                            includeSelectAllOption: true,
-//                            dropUp: true,
-//                            buttonWidth: '100%'
-//                        });
                     }
                 },
                 midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
             });
 
         });
+
     </script>
     @endsection
