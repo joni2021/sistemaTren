@@ -13,11 +13,10 @@
                 </ol>
             </div>
         </header>
-
     </div>
 
 
-    <div class="table-responsive col-xs-12 col-md-10 col-md-offset-1">
+     <div class="table-responsive col-xs-12 col-md-10 col-md-offset-1">
         <table class="table table-hover table-striped table-bordered table-responsive text-center">
             <thead class="responsive">
             <tr class="responsive bg-info">
@@ -30,28 +29,33 @@
 
             <tbody>
 
-            {{--https://github.com/joni2021/sistemaTren.git--}}
+                    @if(count($turnos) > 0)
+                        @foreach($turnos as $turno)
 
-                    @foreach($turnos as $turno)
+                        @if($turno->prioridad == 1)
+                            <tr class="responsive danger">
+                        @else
+                            <tr class="responsive">
+                        @endif
+                            <td></td>
+                            <td>{{ $turno->Paciente->getFullNamePacienteAttribute() }}</td>
+                            <td>{{ $turno->turno }} </td>
+                            <td>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-system"><i class="fa fa-edit"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-danger dark"><i class="fa fa-remove"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    @else
+                        <tr class="responsive bg-info">
+                            <td colspan="4" class="text-danger"> No hay tipos de usuarios registrados </td>
+                        </tr>
+                    @endif
 
-
-                    <tr class="responsive">
-                        <td></td>
-                        <td>{{ $turno->Paciente->getFullNamePacienteAttribute() }}  </td>
-                        <td>{{ $turno->turno }} </td>
-                        <td>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-system"><i class="fa fa-edit"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger dark"><i class="fa fa-remove"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                <tr class="responsive bg-info">
-                    <td colspan="4" class="text-danger"> No hay tipos de usuarios registrados </td>
-                </tr>
             </tbody>
         </table>
     </div>
