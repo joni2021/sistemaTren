@@ -16,9 +16,12 @@ class EspecialidadRepo extends BaseRepo {
         return new Especialidad();
     }
 
-    public function getEspecialidad($value)
+    public function getEspecialidad($value = null )
     {
-        return $this->model->where('especialidad', $value)->first();
+
+       return $this->model->where('especialidad', $value)->first();
+
+
     }
 
 

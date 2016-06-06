@@ -36,7 +36,9 @@ class TurnoRepo extends BaseRepo
 
     public function turnosPorEspecialidad($value)
     {
+
         return $this->model->where('especialidades_id', $value)->get();
+
     }
 
 }

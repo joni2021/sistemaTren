@@ -52,7 +52,7 @@
                         @endforeach
                     @else
                         <tr class="responsive bg-info">
-                            <td colspan="4" class="text-danger"> No hay tipos de usuarios registrados </td>
+                            <td colspan="4" class="text-danger"> No hay pacientes asignados </td>
                         </tr>
                     @endif
 

@@ -16,19 +16,19 @@ class PsicologiaController extends Controller {
 
     protected $turnoRepo;
     protected $especialidadRepo;
-    protected $especialidad_id;
+    protected $especialidad;
 
     public function __construct(TurnoRepo $turnoRepo, EspecialidadRepo $especialidadRepo)
     {
         $this->turnoRepo = $turnoRepo;
         $this->especialidadRepo = $especialidadRepo;
-        $this->especialidad_id = 'Psicólogo';
+        $this->especialidad = 'Psicólogo';
     }
 
     public function index()
     {
 
-        $especialidad = $this->especialidadRepo->getEspecialidad($this->especialidad_id);
+        $especialidad = $this->especialidadRepo->getEspecialidad($this->especialidad);
         $turnos = $this->turnoRepo->turnosPorEspecialidad($especialidad->id);
 
 

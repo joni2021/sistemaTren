@@ -28,11 +28,12 @@
 
             <tbody>
 
-            {{--https://github.com/joni2021/sistemaTren.git--}}
-
+            @if(count($turnos) > 0)
+                @foreach($turnos as $turno)
                     <tr class="responsive">
-                        <td> 1 </td>
-                        <td> Perez, jorge </td>
+                        <td></td>
+                        <td>{{ $turno->Paciente->getFullNamePacienteAttribute() }}</td>
+                        <td>{{ $turno->turno }} </td>
                         <td>
                             <div class="btn-group">
                                 <button type="button" class="btn btn-system"><i class="fa fa-edit"></i>
@@ -42,10 +43,13 @@
                             </div>
                         </td>
                     </tr>
-
+                @endforeach
+            @else
                 <tr class="responsive bg-info">
-                    <td colspan="4" class="text-danger"> No hay tipos de usuarios registrados </td>
+                    <td colspan="4" class="text-danger"> No hay pacientes asignados </td>
                 </tr>
+            @endif
+
             </tbody>
         </table>
     </div>

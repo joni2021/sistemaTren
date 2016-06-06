@@ -7,14 +7,29 @@
  */
 namespace app\Http\Controllers\Especialidad;
 use app\Http\Controllers\Controller;
-
+use app\Http\Repositories\EspecialidadRepo;
+use app\Http\Repositories\TurnoRepo;
 
 class CardiologiaController extends Controller {
 
+    protected $turnoRepo;
+    protected $especialidadRepo;
+    protected $especialidad_id;
+
+
+    public function __construct(TurnoRepo $turnoRepo, EspecialidadRepo $especialidadRepo)
+    {
+        $this->turnoRepo = $turnoRepo;
+        $this->especialidadRepo = $especialidadRepo;
+        $this->especialidad = 'Cardiologia';
+    }
+
     public function index()
     {
+        $especialidad = $this->especialidadRepo->getEspecialidad($this->especialidad);
+        $turnos = $this->turnoRepo->turnosPorEspecialidad($especialidad->id);
 
-        return view('especialidades.cardiologia.index');
+        return view('especialidades.cardiologia.index', compact('especialidad','turnos'));
 
     }
 
