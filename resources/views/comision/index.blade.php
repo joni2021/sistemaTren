@@ -78,7 +78,7 @@
                                 <div class="col-xs-12">
 
                                     {!! Form::select('user_id[]',$user, 'users' ,['id' => 'users','multiple' => 'multiple']) !!}
-                                    {{--<select name="user_id[]" id="users" multiple="multiple"></select>--}}
+
                                 </div>
                                 <!-- end section -->
 
@@ -124,75 +124,59 @@
         // Form Skin Switcher
         $(".btn-group").on('click','.btn-modal', function(ev) {
             ev.preventDefault();
-            var selecteds = 0;
-
-            var seleccionados = new Array();
-
-            if(seleccionados.length != 0){
-                $('#users').multiselect('deselect',seleccionados);
-                $('#users').multiselect('refresh');
-            }
 
             var self = $(this);
             var id = $(self).attr('data-id');
 
             var usuarios = 0;
-//            $("#users option").each(function(ev){
-//                if($(this).attr("selected","selected")){
-//                    $('#users').multiselect('deselect_all');
-//                }
-
-//            });
-
+            var selected = new Array();
 
             $.get(location.href+"/"+id+"/consultarUsuarios",{_token: $("meta[name='csrf-token']").attr('content'), id: id},function(ev){
                 usuarios = ev;
 
                 if(usuarios != ""){
-                    for(var i in usuarios){
-                        $("#users option").each(function(ev){
-                            if(this.firstChild.data == usuarios[i]){
-                                seleccionados.push(i);
-                                $(this).attr("selected","selected");
 
-                                $('#users').multiselect('refresh');
-
-//                                var opt = $(this);
-
-//                                $('#formAsignarUsuarios').find(".multiselect-container li").each(function(ev){
-//                                    if($(this).find("input[type='checkbox']").val() == $(opt).val()){
-//                                        $(this).addClass('active');
-////                                        $(this).find("input[type='checkbox']").prop("checked",true);
-//                                        $(this).find("a").click();
-//                                        console.log($(this).find("a"));
-//                                    }
-//
-//
-//                                });
+                    $("#users option").each(function(ev){
+                        var opt = $(this);
+                        var a = $(opt).val();
+                        $.each(usuarios,function(key,val){
+                            if(a == key){
+                                selected.push(key);
+                                if($(opt).attr("selected") != "selected"){
+                                    $(opt).attr("selected",true);
+                                }
                             }
                         });
-                    }
+                    });
+                    $('#users').multiselect('refresh');
                }
 
-            });
-
-//            $('#users').multiselect('refresh');
-            // Inline Admin-Form example
-            $.magnificPopup.open({
-                removalDelay: 500, //delay removal by X to allow out-animation,
-                items: {
-                    src: $(".btn-modal").attr('href')
-                },
-                callbacks: {
-                    beforeOpen: function(e) {
-                        var Animation = $(self).attr('data-effect');
-                        this.st.mainClass = Animation;
+                // Inline Admin-Form example
+                $.magnificPopup.open({
+                    removalDelay: 500, //delay removal by X to allow out-animation,
+                    items: {
+                        src: $(".btn-modal").attr('href')
+                    },
+                    callbacks: {
+                        beforeOpen: function(e) {
+                            var Animation = $(self).attr('data-effect');
+                            this.st.mainClass = Animation;
 //                        $('#users').multiselect('refresh');
-                        $('#formAsignarUsuarios').attr('action',location.href+"/"+id+"/asignar");
+                            $('#formAsignarUsuarios').attr('action',location.href+"/"+id+"/asignar");
+                            if(selected.length > 0)
+                                $('#users').multiselect('select',selected);
 
-                    }
-                },
-                midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
+                        },close: function(e){
+                            $("#users option").each(function(ev){
+                                $(this).attr('selected',false);
+//                            $('#users').multiselect('refresh');
+                            });
+                            $('#users').multiselect('deselect','1');
+                        }
+                    },
+                    midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
+                });
+
             });
 
         });

@@ -64,8 +64,8 @@ class UsersController extends Controller {
 
         //Asignar roles a usuarios
         $user = $this->user->find($id);
-        $user->detachAllRoles()
-        ;
+        $user->detachAllRoles();
+
         $user->roles()->sync($request->role_id);
 
         return redirect()->route('usersindex')->with('ok','Se edito correctamente el usuario');

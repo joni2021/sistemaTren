@@ -74,8 +74,9 @@ class ComisionesController extends Controller {
 
 
     public function asignarUsuarios($id,Request $request){
-
         $comision = $this->comision->find($id);
+
+        $comision->User()->detach();
 
         $comision->User()->attach($request->user_id);
 
