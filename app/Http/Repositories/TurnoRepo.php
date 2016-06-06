@@ -34,26 +34,11 @@ class TurnoRepo extends BaseRepo
 
     }
 
-
-    public function turnoPorEspecialidad()
+    public function turnosPorEspecialidad($value)
     {
-            return Turno::where('especialidades_id', 1);
 
-//        return $this->model->where('especialidades_id', $value);
+        return $this->model->where('especialidades_id', $value)->get();
+
     }
 
-
-
-
-
-//            $turno = $this->turnoRepo->all();
-//
-//            if(count($turno) > 0)
-//            {
-//            echo 'mayor a 0';
-//            }
-//            else
-//                {
-//                    echo 'igual a 0';
-//                }
 }

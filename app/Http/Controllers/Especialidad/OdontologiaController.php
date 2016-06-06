@@ -6,7 +6,6 @@
  * Time: 11:22
  */
 namespace app\Http\Controllers\Especialidad;
-use app\Entities\Especialidad;
 use app\Http\Controllers\Controller;
 use app\Http\Repositories\EspecialidadRepo;
 use app\Http\Repositories\TurnoRepo;
@@ -16,20 +15,20 @@ class OdontologiaController extends Controller {
 
     protected $turnoRepo;
     protected $especialidadRepo;
+    protected $especialidad;
 
     public function __construct(TurnoRepo $turnoRepo, EspecialidadRepo $especialidadRepo)
     {
         $this->turnoRepo = $turnoRepo;
         $this->especialidadRepo = $especialidadRepo;
+        $this->especialidad = 'Odontologo';
     }
 
     public function index()
     {
-//      $especialidad = Especialidad::search('especialidad', 'odontologia' );
-//      dd($especialidad);
-//        $turno = $this->turnoRepo->all();
-        $especialidad = $this->especialidadRepo->getEspecialidad('Odontologo');
-        $turnos = $this->turnoRepo->turnoPorEspecialidad()->get();
+        $especialidad = $this->especialidadRepo->getEspecialidad($this->especialidad);
+        $turnos = $this->turnoRepo->turnosPorEspecialidad($especialidad->id);
+
 
         return view('especialidades.odontologia.index', compact('turnos', 'especialidad'));
 

@@ -8,22 +8,27 @@
 namespace app\Http\Controllers\Especialidad;
 use app\Http\Controllers\Controller;
 use app\Http\Repositories\EspecialidadRepo;
-
+use app\Http\Repositories\TurnoRepo;
 
 class MedicaController extends Controller {
 
     protected $especialidadRepo;
+    protected $turnoRepo;
+    protected $especialidad;
 
-    public function __construct(EspecialidadRepo $especialidadRepo)
+    public function __construct(TurnoRepo $turnoRepo, EspecialidadRepo $especialidadRepo)
     {
+        $this->turnoRepo = $turnoRepo;
         $this->especialidadRepo = $especialidadRepo;
+        $this->especialidad = 'Medica';
     }
 
     public function index()
     {
 
-        $this->especialidadRepo->getEspecialidad('medica');
-        return view('especialidades.medica.index');
+        $especialidad = $this->especialidadRepo->getEspecialidad($this->especialidad);
+        $turnos = $this->turnoRepo->turnosPorEspecialidad($especialidad->id);
+        return view('especialidades.medica.index', compact('especialidad', 'turnos'));
 
     }
 

@@ -16,17 +16,13 @@ class EspecialidadRepo extends BaseRepo {
         return new Especialidad();
     }
 
-    public function getEspecialidad($value)
+    public function getEspecialidad($value = null )
     {
 
-        return $this->model->where('especialidad', $value )->get();
+       return $this->model->where('especialidad', $value)->first();
+
 
     }
 
-//        return $this->model
-//        ->orderBy('name')
-//        ->select(DB::raw("concat('[', iata, '] ', name, ' - ', localidad) as description, id"))
-//        ->where('provincia_id', $idProvincia)
-//        ->lists('description', 'id');
 
 }
