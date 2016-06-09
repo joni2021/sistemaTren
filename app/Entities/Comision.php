@@ -4,18 +4,26 @@ namespace app\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use app\Entities\User;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comision extends Model
 {
+    use SoftDeletes;
 
-    protected $table = 'comision';
+    protected $table = 'comisiones';
     protected $fillable = ['localidad', 'provincia', 'fecha_llegada','fecha_partida'];
 
+    protected $dates = ['deleted_at'];
 
     //Relaciones
     public function User()
     {
         return $this->belongsToMany(User::class);
+    }
+
+    public function Agenda()
+    {
+        return $this->belongsToMany(Agenda::class);
     }
 
     //Accessors

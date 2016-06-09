@@ -1,5 +1,5 @@
 <?php
-
+namespace app\Http\Controllers;
 
 use app\Http\Repositories\EspecialidadRepo;
 use app\Http\Repositories\PacienteRepo;

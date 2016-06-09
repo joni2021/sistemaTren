@@ -3,6 +3,7 @@ namespace app\Http\Controllers;
 
 use app\Entities\User;
 use app\Http\Repositories\UserRepo;
+use app\Http\Requests\EditUsersRequest;
 use Bican\Roles\Models\Role;
 use app\Http\Requests\CreateUsersRequest;
 
@@ -56,7 +57,7 @@ class UsersController extends Controller {
 
     }
 
-    public function update(CreateUsersRequest $request, $id = null)
+    public function update(EditUsersRequest $request, $id = null)
     {
         $user = $this->user->find($id);
         $data = $request->only('name', 'last_name', 'email', 'user', 'password');
@@ -72,12 +73,12 @@ class UsersController extends Controller {
 
     }
 
-//    public function delete($id = null)
-//    {
-//        $user = $this->user->find($id);
-//        $user->delete();
-//        return redirect()->route('usersindex')->with('ok','Se elimino correctamente el usuario');
-//    }
+    public function delete($id = null)
+    {
+        $user = $this->user->find($id);
+        $user->delete();
+        return redirect()->route('usersindex')->with('ok','Se elimino correctamente el usuario');
+    }
 
 
 }

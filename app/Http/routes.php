@@ -18,11 +18,15 @@ use Bican\Roles\Models\Permission;
 require (__DIR__ . '/Routes/Auth.php');
 
 Route::group(['prefix' => '','middleware' => 'auth'], function() {
-    require(__DIR__ . '/Routes/UsersRoute.php');
-    require(__DIR__ . '/Routes/RolesRoute.php');
-    require(__DIR__ . '/Routes/PermisosRoute.php');
+    Route::group(['middleware' => 'role:admin'], function() {
+        require(__DIR__ . '/Routes/UsersRoute.php');
+        require(__DIR__ . '/Routes/RolesRoute.php');
+        require(__DIR__ . '/Routes/PermisosRoute.php');
+        require(__DIR__ . '/Routes/ComisionesRoute.php');
+    });
+
+    require(__DIR__ . '/Routes/AgendaRoute.php');
     require(__DIR__ . '/Routes/PacientesRoute.php');
-    require(__DIR__ . '/Routes/ComisionesRoute.php');
     require(__DIR__ . '/Routes/Especialidades/PsicologiaRoute.php');
     require(__DIR__ . '/Routes/Especialidades/NeurologiaRoute.php');
     require(__DIR__ . '/Routes/Especialidades/CardiologiaRoute.php');

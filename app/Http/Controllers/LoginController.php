@@ -23,12 +23,18 @@ class LoginController extends Controller {
 
     public function authenticate(Request $request)
     {
-        if (Auth::attempt(['user' => $request->user, 'password' => $request->password]))
-            if($request->user == "admin")
+        if (Auth::attempt(['user' => $request->user, 'password' => $request->password])){
+            $hoy = strtotime(date("d-m-Y"));
+            foreach(Auth::user()->comision as $c){
+                if(strtotime($c->fecha_partida) > $hoy){
+                    $c->delete();
+                }
+            }
+            if(Auth::user()->is("admin"))
                 return  redirect()->route('usersindex');
             else
-                return  redirect()->intended('users');
-        else
+                return  redirect()->route('agendaindex');
+        }else
             return redirect()->back()->withErrors('El usuario no existe o la contraseña es incorrecta.');
 
 

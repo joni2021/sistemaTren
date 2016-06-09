@@ -17,11 +17,12 @@ use Bican\Roles\Models\Role;
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract, HasRoleAndPermissionContract
 {
     use Authenticatable, CanResetPassword, HasRoleAndPermission;
-//    use SoftDeletes;
+    use SoftDeletes;
 
     protected $table = 'users';
     protected $fillable = ['email', 'password', 'user','name','last_name'];
     protected $hidden = ['password', 'remember_token'];
+    protected $dates = ['deleted_at'];
 
     public function Comision(){
         return $this->belongsToMany(Comision::class);
