@@ -8,7 +8,7 @@ class Agenda extends Model
 {
 
     protected $table = 'agendas';
-    protected $fillable = ['comision_id', 'fecha', 'hora','evento'];
+    protected $fillable = ['comision_id', 'fecha_inicio', 'fecha_fin', 'hora','evento'];
 
 
     //Relaciones

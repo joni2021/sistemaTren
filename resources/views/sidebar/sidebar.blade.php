@@ -12,13 +12,16 @@
             </ul>
         </div>
 
-        <ul class="nav navbar-nav navbar-left pr15">
-            <li class="pt20 pb20">
-                <i class="fa fa-map-marker fs18"></i><span> Capital Federal, Buenos Aires.</span>
-            </li>
-        </ul>
+        @if(!Auth::user()->hasRole('admin'))
+            <ul class="nav navbar-nav navbar-left pr15">
+                <li class="pt20 pb20">
+                    <i class="fa fa-map-marker fs18"></i><span> Capital Federal, Buenos Aires.</span>
+                </li>
+            </ul>
+        @endif
 
-        <ul class="nav navbar-nav">
+        @if(Auth::user()->hasRole('admin'))
+            <ul class="nav navbar-nav">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <span class="fa fa-user fs20"></span>
@@ -75,6 +78,7 @@
             </li>
 
         </ul>
+        @endif
 
         <ul class="nav navbar-nav navbar-right">
             <li class="ph10 pv20"> <i class="fa fa-circle text-tp fs8"></i></li>
@@ -131,7 +135,7 @@
             <!-- sidebar menu -->
             <ul class="nav sidebar-menu">
                 <li>
-                    <a href="#">
+                    <a href="{!! route('agendaindex') !!}">
                         <span class="fa fa-calendar"></span>
                         <span class="sidebar-title">Calendario</span>
                             {{--<span class="sidebar-title-tray">--}}

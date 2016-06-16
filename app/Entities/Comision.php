@@ -23,7 +23,7 @@ class Comision extends Model
 
     public function Agenda()
     {
-        return $this->belongsToMany(Agenda::class);
+        return $this->hasMany(Agenda::class);
     }
 
     //Accessors

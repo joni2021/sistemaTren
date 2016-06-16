@@ -1,4 +1,4 @@
-/*
+  /*
 Glyphicons for Bootstrap
 
 Since icons are fonts, they can be placed anywhere text is placed and are
@@ -6057,12 +6057,12 @@ td.legendColorBox {
 }
 .fc-event:hover,
 .fc-event:focus {
-  color: #777;
-  background: #f4f4f4;
+  color: #fff;
+  background: #0679a4;
 }
 .fc-view-container .fc-event {
   padding: 6px;
-  background: #f4f4f4;
+  /*background: #3a87ad;*/
 }
 .fc-view-container .fc-event .fc-content {
   overflow: hidden;

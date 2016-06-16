@@ -26,9 +26,9 @@
                                             {!!Form::label('daterange','Fecha', array('class' => 'control-label'))!!}
                                         <div class="form-group field prepend-icon">
                                             @if(isset($comision))
-                                                {!!Form::date('daterange',$comision->Dates(),array('class' => 'form-control pull-right active gui-input','id' => 'daterangepicker1','placeholder' => 'Ingrese fecha de llegada y partida'))!!}
+                                                {!!Form::text('daterange',$comision->Dates(),array('class' => 'form-control pull-right active gui-input','id' => 'daterangepicker1','placeholder' => 'Ingrese fecha de llegada y partida'))!!}
                                             @else
-                                                {!!Form::date('daterange',"",array('class' => 'form-control pull-right active gui-input','id' => 'daterangepicker1','placeholder' => 'Ingrese fecha de llegada y partida'))!!}
+                                                {!!Form::text('daterange',"",array('class' => 'form-control pull-right active gui-input','id' => 'daterangepicker1','placeholder' => 'Ingrese fecha de llegada y partida'))!!}
                                             @endif
                                                 <label for="daterange" class="field-icon"><i class="fa fa-calendar"></i>
                                                 </label>
@@ -210,7 +210,10 @@
                 });
             });
 
-
+                // Init daterange plugin
+                $('#daterangepicker1').daterangepicker({
+                    "autoApply": true,
+                });
 
 
         </script>

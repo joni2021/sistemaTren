@@ -15,15 +15,16 @@ class AgendaController extends Controller {
 
     public function index()
     {
-        $data['comision'] = Auth::user()->comision->first();
-//        $data['agenda'] = $this->comision->all();
+        $data['comision'] = Auth::user()->comision;
+        if($data['comision']->count() > 1){
+            $array = [];
+            foreach($data['comision'] as $c){
+                $array["$c->id"] =  $c->Address();
+            }
+            $data['comision'] = $array;
+        }
 
         return view('agenda.index')->with($data);
-    }
-
-    public function create()
-    {
-        return view('comision.formComision');
     }
 
     public function store(CreateComisionesRequest $request)

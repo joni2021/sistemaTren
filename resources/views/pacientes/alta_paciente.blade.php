@@ -74,27 +74,80 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword" class="col-lg-3 control-label">Fecha nacimiento:</label>
+                            <label for="fecha_nacimiento" class="col-lg-3 control-label">Fecha nacimiento:</label>
                             <div class="col-lg-8">
-                                <input type="text" class="form-control" id="inputPassword" name="fecha_nacimiento">
+                                <input type="text" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword" class="col-lg-3 control-label">Teléfono:</label>
+                            <label for="telefono" class="col-lg-3 control-label">Teléfono:</label>
                             <div class="col-lg-8">
-                                <input type="text" class="form-control" id="inputPassword" name="telefono" >
+                                <input type="text" class="form-control" id="telefono" name="telefono" >
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword" class="col-lg-3 control-label">Nacionalidad:</label>
+                            <label for="id_nacionalidad" class="col-lg-3 control-label">Nacionalidad:</label>
                             <div class="col-lg-8">
-                                <input type="text" class="form-control" id="inputPassword" name="id_nacionalidad" >
+                                <input type="text" class="form-control" id="id_nacionalidad" name="id_nacionalidad" >
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword" class="col-lg-3 control-label">Lugar de Nacimiento:</label>
+                            <label for="id_lugar_nacimiento" class="col-lg-3 control-label">Lugar de Nacimiento:</label>
                             <div class="col-lg-8">
-                                <input type="text" class="form-control" id="inputPassword" name="id_lugar_nacimiento" >
+                                <input type="text" class="form-control" id="id_lugar_nacimiento" name="id_lugar_nacimiento" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="calle" class="col-lg-3 control-label">Calle:</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" id="calle" name="calle" >
+                            </div>
+                            <div class="col-lg-3">
+                                <input type="text" class="form-control" id="numero" name="numero" placeholder="N°">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="manzana" class="col-lg-3 control-label">Manzana:</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="manzana" name="manzana" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="barrio" class="col-lg-3 control-label">Barrio:</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="barrio" name="barrio" >
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="partido" class="col-lg-3 control-label">Partido:</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="partido" name="partido" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="localidad" class="col-lg-3 control-label">Localidad:</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="localidad" name="localidad" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="plan_social" class="col-lg-3 control-label">Plan social:</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="plan_social" name="plan_social" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ocupacion" class="col-lg-3 control-label">Ocupaciión:</label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="ocupacion" name="ocupacion" >
                             </div>
                         </div>
 

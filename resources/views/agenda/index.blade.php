@@ -7,7 +7,7 @@
 
     <!-- Admin Forms CSS -->
     <link rel="stylesheet" type="text/css" href="assets/admin-tools/admin-plugins/admin-modal/adminmodal.css">
-
+    <link rel="stylesheet" type="text/css" href="vendor/plugins/daterange/daterangepicker.css">
 @endsection
 @section('content')
         <!-- Start: Content -->
@@ -26,11 +26,30 @@
                         <div class="inline-mp center-block"></div>
                     </div>
 
-                    <h4 class="pl10 mt25"> Eventos en <strong>{!! $comision->Address() !!}</strong>
-                        {{--@if(Auth::user()->hasRole('admin'))--}}
-                            <a id="compose-event-btn" href="#calendarEvent" data-effect="mfp-flipInY"><span class="fa fa-plus-square"></span></a>
-                            {{--@endif--}}
-                    </h4>
+
+{{--                    {!! dd($comision->first()->Address()) !!}--}}
+                    @if(is_array($comision))
+                        <h4 class="pl10 mt25 fs13"> Seleccionar comisión</h4>
+                        {!! Form::open(['route' => 'comisionesstore', 'method' => 'POST','id' => 'account2']) !!}
+                            <div class="form-group">
+                                {!! Form::select('comision',$comision,'comision', ['class' => 'form-control','id' => 'comision']) !!}
+                                {{--<button type="submit" class="form-control">--}}
+                                    {{--<span class="fa fa-search"></span>--}}
+                                {{--</button>--}}
+                            </div>
+                        {!! Form::close() !!}
+                    @else
+                        <h4 class="pl10 mt25 fs13"> Eventos en <strong>{!! $comision->first()->Address() !!}</strong>
+                            @if(Auth::user()->hasRole('admin'))
+                                <a id="compose-event-btn" type="button" class="btn btn-info btn-xs btn-rounded" data-toggle="modal" data-target="#calendarEvent" data-effect="mfp-flipInY"><span class="fa fa-plus"></span></a>
+
+                            @endif
+                        </h4>
+                    @endif
+
+
+
+
                     <hr class="mv15 br-light">
                     <div id="external-events" class="bg-dotted">
 
@@ -109,88 +128,76 @@
         </section>
 
 
+
+
     <!-- Create Calendar Event Form -->
-    <div class="admin-form theme-primary popup-basic popup-lg mfp-with-anim mfp-hide" id="calendarEvent">
-        <div class="panel">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-pencil-square"></i>New Calendar Event
-                </span>
-            </div>
-            <!-- end .form-header section -->
 
-            <form method="post" action="http://admindesigns.com/" id="calendarEventForm">
-                <div class="panel-body p25">
-                    <div class="section-divider mt10 mb40">
-                        <span>Event Details</span>
-                    </div>
-                    <!-- .section-divider -->
-
-                    <div class="section row">
-                        <div class="col-md-6">
-                            <label for="firstname" class="field prepend-icon">
-                                <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="Event Coordinator">
-                                <label for="firstname" class="field-icon"><i class="fa fa-user"></i>
-                                </label>
-                            </label>
-                        </div>
-                        <!-- end section -->
-
-                        <div class="col-md-6">
-                            <label for="eventDate" class="field prepend-icon">
-                                <input type="text" id="eventDate" name="eventDate" class="gui-input" placeholder="Event Date">
-                                <label class="field-icon"><i class="fa fa-calendar"></i>
-                                </label>
-                            </label>
-                        </div>
-                        <!-- end section -->
-                    </div>
-                    <!-- end .section row section -->
-
-                    <div class="section">
-                        <label for="email" class="field prepend-icon">
-                            <input type="email" name="email" id="email" class="gui-input" placeholder="Contact Email">
-                            <label for="email" class="field-icon"><i class="fa fa-envelope"></i>
-                            </label>
-                        </label>
-                    </div>
-                    <!-- end section -->
-
-                    <div class="section">
-                        <div class="smart-widget sm-right smr-140">
-                            <label for="username" class="field prepend-icon">
-                                <input type="text" name="username" id="username" class="gui-input" placeholder="Event Title">
-                                <label for="username" class="field-icon"><i class="fa fa-flag"></i>
-                                </label>
-                            </label>
-                            <label for="username" class="button">company.com</label>
-                        </div>
-                        <!-- end .smart-widget section -->
-                    </div>
-                    <!-- end section -->
-
-                    <div class="section">
-                        <label class="field prepend-icon">
-                            <textarea class="gui-textarea" id="comment" name="comment" placeholder="Event Description"></textarea>
-                            <label for="comment" class="field-icon"><i class="fa fa-comments"></i>
-                            </label>
-                            <span class="input-footer hidden"><strong>Hint:</strong>Don't be negative or off topic! just be awesome...</span>
-                        </label>
-                    </div>
-                    <!-- end section -->
-
-                </div>
-                <!-- end .form-body section -->
-                <div class="panel-footer text-right">
-                    <button type="submit" class="button btn-primary">Create Event</button>
-                </div>
-                <!-- end .form-footer section -->
-            </form>
-        </div>
-        <!-- end .admin-form section -->
-    </div>
-    <!-- end: .admin-form -->
 
 @endsection
+
+@if(!is_array($comision))
+    @if(Auth::user()->hasRole('admin'))
+        @section('modal')
+            <div id="calendarEvent" class="modal fade admin-form" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-body">
+
+                            <div class="panel">
+                                <div class="panel-heading">
+                            <span class="panel-title"><i class="fa fa-pencil-square"></i>Agregar nuevo evento
+                            </span>
+                                </div>
+                                <!-- end .form-header section -->
+
+                                {!! Form::model($comision,['route' => 'comisionesstore', 'method' => 'POST','id' => 'calendarEventForm']) !!}
+                                    <div class="panel-body p25">
+                                        <div class="section-divider mt10 mb40">
+                                            <span>{!! $comision->first()->Address() !!}</span>
+                                        </div>
+                                        <!-- .section-divider -->
+
+                                        <div class="section row">
+                                            <div class="col-xs-12">
+                                                <label for="daterange" class="field prepend-icon">
+                                                    {!! Form::text('daterange',"",array('class' => 'form-control pull-right active gui-input','id' => 'daterangepicker','placeholder' => 'Ingrese fecha del evento'))!!}
+                                                    <label class="field-icon"><i class="fa fa-calendar"></i>
+                                                    </label>
+                                                </label>
+                                            </div>
+                                            <!-- end section -->
+                                        </div>
+                                        <!-- end .section row section -->
+
+                                        <div class="section">
+                                            <label class="field prepend-icon">
+                                                {!! Form::textarea('evento',['class' => 'gui-textarea', 'placeholder' => 'Descripción']) !!}
+                                                {{--<textarea class="gui-textarea" id="comment" name="comment" placeholder="Descripción"></textarea>--}}
+                                                <label for="comment" class="field-icon"><i class="fa fa-comments"></i>
+                                                </label>
+                                            </label>
+                                        </div>
+                                        <!-- end section -->
+
+                                    </div>
+                                    <!-- end .form-body section -->
+                                    <div class="panel-footer text-right">
+                                        <button type="submit" class="button btn-primary">Crear evento</button>
+                                    </div>
+                                    <!-- end .form-footer section -->
+                                {!! Form::close() !!}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        @endsection
+    @endif
+@endif
+
 
 @section('js')
     <!-- Google Map API -->
@@ -209,30 +216,14 @@
     <!-- FullCalendar Plugin -->
     {{--<script src='vendor/plugins/fullcalendar/lib/moment.min.js'></script>--}}
     <script type="text/javascript" src="vendor/plugins/daterange/moment.min.js"></script>
-    <script src='vendor/plugins/fullcalendar/fullcalendar.js'></script>
+    <script src='vendor/plugins/fullcalendar/fullcalendar.min.js'></script>
     <script src='vendor/plugins/fullcalendar/es.js'></script>
+
+    <script type="text/javascript" src="vendor/plugins/daterange/daterangepicker.js"></script>
+    <script type="text/javascript" src="vendor/plugins/datepicker/js/bootstrap-datetimepicker.js"></script>
     {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.3/fullcalendar.min.js"></script>--}}
 
     <script type="text/javascript">
-        console.log($.fullCalendar.langs);
-
-        // Inline Admin-Form example 
-        $('#compose-event-btn').magnificPopup({
-            removalDelay: 500, //delay removal by X to allow out-animation
-            callbacks: {
-                beforeOpen: function(e) {
-                    // we add a class to body indication overlay is active
-                    // We can use this to alter any elements such as form popups
-                    // that need a higher z-index to properly display in overlays
-                    $('body').addClass('mfp-bg-open');
-                    this.st.mainClass = this.st.el.attr('data-effect');
-                },
-                afterClose: function(e) {
-                    $('body').removeClass('mfp-bg-open');
-                }
-            },
-            midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
-        });
 
         // Calendar form date picker
         $("#eventDate").datepicker({
@@ -278,7 +269,7 @@
             header: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'month,agendaWeek,agendaDay'
+                right: ''
             },
             lang: 'es',
             editable: true,
@@ -320,6 +311,24 @@
                     }, 3500);
                 });
             }
+            @if(!is_array($comision))
+                @if($comision->first()->Agenda->count() > 0)
+                    ,events: [
+                    @foreach($comision->first()->Agenda as $i => $a)
+                        @if($i > 0)
+                            ,
+                        @endif
+                        {
+                            title: "{!! $a->evento !!}",
+                            start: '{!! $a->fecha_inicio !!}'
+                            @if($a->fecha_fin != "")
+                                ,end: "{!! $a->fecha_fin !!}"
+                            @endif
+                        }
+                    @endforeach
+                    ]
+                @endif
+            @endif
         });
 
 
@@ -333,6 +342,20 @@
                 Calendar.fullCalendar('gotoDate', formatted)
             }
         });
+
+        //        DATERANGE
+        $("#daterangepicker").daterangepicker(
+                {
+                    "locale": {
+                        "fromLabel": "Inicio",
+                        "toLabel": "Fin"
+                    }
+                }
+        );
+
+        $("#comision").multiselect();
+
+
 
     </script>
     <!-- END: PAGE SCRIPTS -->

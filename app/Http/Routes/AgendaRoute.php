@@ -13,12 +13,6 @@ Route::group(['prefix' => $model], function() use($model) {
     ]);
 
 
-    Route::get('create',[
-        'as' => $model.'create',
-        'uses' => $controller.'@create'
-    ]);
-
-
     Route::get('{id}/edit',[
         'as' => $model.'edit',
         'uses' => $controller.'@edit'

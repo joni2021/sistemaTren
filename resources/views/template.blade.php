@@ -89,7 +89,7 @@
 <!-- End: Main -->
 
 <!-- BEGIN: PAGE SCRIPTS -->
-
+@yield('modal')
 
 <!-- Page Plugins -->
 <script type="text/javascript" src="assets/js/pages/login/EasePack.min.js"></script>
@@ -155,9 +155,6 @@
                 endDate: moment()
             }
 
-
-            // Init daterange plugin
-            $('#daterangepicker1').daterangepicker();
 
         });
 

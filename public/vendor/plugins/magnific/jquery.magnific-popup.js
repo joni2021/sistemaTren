@@ -873,7 +873,7 @@ $.magnificPopup = {
 		
 		closeOnContentClick: false,
 
-		closeOnBgClick: true,
+		closeOnBgClick: false,
 
 		closeBtnInside: true, 
 
@@ -899,7 +899,7 @@ $.magnificPopup = {
 
 		tClose: 'Close (Esc)',
 
-		tLoading: 'Loading...'
+		tLoading: 'Cargando...'
 
 	}
 };
