@@ -1,13 +1,13 @@
 <?php
 // modelo
-$model = 'odontologia';
+$model = 'especialidad';
 
 Route::group(['prefix' => $model], function() use($model) {
 
     //var controlador
-    $controller = 'Especialidad\OdontologiaController';
+    $controller = 'EspecialidadController';
 
-    Route::get('/',[
+    Route::get('{id}/',[
 
         'as' => $model.'index',
         'uses' => $controller.'@index'
@@ -32,6 +32,11 @@ Route::group(['prefix' => $model], function() use($model) {
     Route::post('update',[
         'as' => $model.'update',
         'uses' => $controller.'@update'
+    ]);
+
+    Route::post('{id}/delete',[
+        'as' => $model.'delete',
+        'uses' => $controller.'@delete'
     ]);
 
 

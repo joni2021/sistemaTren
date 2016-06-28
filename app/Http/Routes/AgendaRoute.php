@@ -12,6 +12,11 @@ Route::group(['prefix' => $model], function() use($model) {
         'uses' => $controller.'@index'
     ]);
 
+    Route::post('/',[
+        'as' => $model.'selectComision',
+        'uses' => $controller.'@index'
+    ]);
+
 
     Route::get('{id}/edit',[
         'as' => $model.'edit',

@@ -1,7 +1,7 @@
 <?php
 namespace app\Http\Controllers;
 
-use app\Http\Repositories\EspecialidadRepo;
+use app\Entities\Especialidad;
 use app\Http\Repositories\PacienteRepo;
 use app\Http\Repositories\TurnoRepo;
 use app\Http\Requests\CreatePacienteRequest;
@@ -9,12 +9,12 @@ use Illuminate\Http\Request;
 class PacientesController extends Controller {
 
     protected $pacienteRepo;
-    protected $especialidadRepo;
+    protected $especialidad;
     protected $turnoRepo;
-    public function __construct(TurnoRepo $turnoRepo, PacienteRepo $pacienteRepo, EspecialidadRepo $especialidadRepo)
+    public function __construct(TurnoRepo $turnoRepo, PacienteRepo $pacienteRepo, Especialidad $especialidad)
     {
         $this->pacienteRepo = $pacienteRepo;
-        $this->especialidadRepo = $especialidadRepo;
+        $this->especialidad = $especialidad;
         $this->turnoRepo = $turnoRepo;
     }
 
@@ -30,20 +30,28 @@ class PacientesController extends Controller {
         return view('pacientes.alta_paciente');
     }
 
-    public function edit()
+    public function edit($id)
     {
-        return view('pacientes.alta_paciente');
+        $data['paciente'] = $this->pacienteRepo->find($id);
+        return view('pacientes.alta_paciente')->with($data);
     }
 
-    public function update()
+    public function update($id,Request $request)
     {
-        return view('pacientes.alta_paciente');
+        $datos = $request->all();
+        $paciente = $this->pacienteRepo->find($id);
+
+        if($paciente->update($datos))
+            return redirect()->back()->with('ok','Se editaron correctamente los datos del paciente');
+        else
+            return redirect()->back()->withErrors('No se pudieron editar correctamente los datos del paciente');
+
     }
 
     public function store(CreatePacienteRequest $request)
     //public function store(Request $request)
     {   
-        $data = $request->only('dni', 'tipo_dni', 'nombre','apellido', 'sexo', 'fecha_nacimiento','telefono', 'id_nacionalidad', 'id_lugar_nacimiento','lectura', 'escritura', 'hijos_mayores','hijos_menores', 'enfermedad_cronica', 'enfermedad_rs','discapacidad', 'tipo_discapacidad', 'presion_arterial_max','presion_arterial_min', 'glusemia', 'colesterol','perimetro_abdominal', 'perimetro_craneal', 'percentilo','imc', 'pco','altura', 'peso', 'talla','observaciones');
+        $data = $request->only('dni', 'tipo_dni', 'nombre','apellido', 'sexo', 'fecha_nacimiento','telefono', 'nacionalidad', 'lugar_nacimiento','lectura', 'escritura', 'hijos_mayores','hijos_menores', 'enfermedad_cronica', 'enfermedad_rs','discapacidad', 'tipo_discapacidad', 'presion_arterial_max','presion_arterial_min', 'glusemia', 'colesterol','perimetro_abdominal', 'perimetro_craneal', 'percentilo','imc', 'pco','altura', 'peso', 'talla','observaciones','calle','numero','manzana','barrio','partido','localidad','plan_social','ocupacion');
         $this->pacienteRepo->create($data);
 
         return redirect()->route('pacientesderivaciones');
@@ -51,12 +59,20 @@ class PacientesController extends Controller {
     }
 
 
-    public function derivaciones($id = null )
+    public function derivaciones()
     {
 
         //ultimo paciente insertado
         $paciente = $this->pacienteRepo->all()->last();
-        $especialidades = $this->especialidadRepo->all();
+        $especialidades = $this->especialidad->all();
+        return view ('pacientes.derivaciones', compact('paciente', 'especialidades'));
+    }
+
+    public function derivacionesEdit($id)
+    {
+        //ultimo paciente insertado
+        $paciente = $this->pacienteRepo->find($id);
+        $especialidades = $this->especialidad->all();
         return view ('pacientes.derivaciones', compact('paciente', 'especialidades'));
     }
 
@@ -65,11 +81,13 @@ class PacientesController extends Controller {
 
         //post derivacion
         $prioridad = $this->turnoRepo->asignPrioridad($request->get('prioridad'));
-        $nro_turno = $this->turnoRepo->asignTurno();
+        $especialidad = $this->especialidad->find($request->get('especialidades_id'));
+        $nro_turno = $this->turnoRepo->getModel()->where("especialidades_id",$especialidad->id)->get()->last()->turno;
+        $nro_turno = str_replace($especialidad->prefijo."-","",$nro_turno) + 1;
 
         $this->turnoRepo->create([
 
-            'turno' => $nro_turno,
+            'turno' => $especialidad->prefijo.'-'.$nro_turno,
             'especialidades_id' => $request->get('especialidades_id'),
             'pacientes_id' => $request->get('pacientes_id'),
             'prioridad' => $prioridad

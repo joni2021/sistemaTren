@@ -14,12 +14,12 @@
 
 .multiselect{
     text-align: left !important;
-    width:100%;
+    width:100% !important;
 }
 
 .multiselect b{
     float: right;
-    margin-top: -12px;
+    margin-top: 8px;
 }
 
 .multiselect b:before{
@@ -35,7 +35,7 @@
 }
 
 .inner100p div,.inner100p button{
-    width:100% !important;
+    width:100%;
 }
 
 #topbar{
@@ -59,4 +59,8 @@
 .w25p{
     width: 25% !important;
     margin-left: -2px !important;
+}
+
+.inline-block{
+    display: inline-block !important;
 }

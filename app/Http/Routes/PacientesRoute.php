@@ -22,13 +22,13 @@ Route::group(['prefix' => $model], function() use($model) {
         'uses' => $controller.'@store'
     ]);
 
-    Route::get('edit',[
+    Route::get('{id}/edit',[
         'as' => $model.'edit',
         'uses' => $controller.'@edit'
     ]);
 
 
-    Route::post('update',[
+    Route::post('{id}/update',[
         'as' => $model.'update',
         'uses' => $controller.'@update'
     ]);
@@ -38,6 +38,13 @@ Route::group(['prefix' => $model], function() use($model) {
 
         'as' => $model.'derivaciones',
         'uses' => $controller.'@derivaciones'
+
+    ]);
+
+    Route::post('{id}/derivaciones', [
+
+        'as' => $model.'derivacionesEdit',
+        'uses' => $controller.'@derivacionesEdit'
 
     ]);
 

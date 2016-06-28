@@ -93,8 +93,9 @@
 
                                                                         <div class="form-group">
                                                                             <div class="col-sm-12 pl15">
+                                                                                <label>
                                                                                 <input type="checkbox" name="role_id[]" value="{{$rol->id}}"  {{ $model->isOne($rol->id)  ? 'checked' : '' }}>
-                                                                                <label for="checkboxExample20">{{ $rol->name }}</label>
+                                                                                    {{ $rol->name }}</label>
                                                                             </div>
                                                                         </div>
                                                                     @endforeach
@@ -106,8 +107,9 @@
 
                                                                                 @foreach($roles as $rol)
                                                                                 <div>
+                                                                                    <label>
                                                                                     <input type="checkbox" name="role_id[]" id="checkboxExample20" value="{{$rol->id}}">
-                                                                                    <label for="checkboxExample20">{{ $rol->name }}</label>
+                                                                                        {{ $rol->name }}</label>
                                                                                 </div>
                                                                                 @endforeach
 

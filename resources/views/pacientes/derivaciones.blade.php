@@ -5,7 +5,7 @@
 
 <section id="content">
 
-                <h2 class="lh30 mt15 text-center"><b class="text-primary">Seleccione</b> a quien desea derivar el Paciente: <b class="text-primary"> {{ $paciente->getFullNamePacienteAttribute()}} </b></h2>
+                <h2 class="lh30 mt15 text-center"><b class="text-primary">Seleccione</b> a quien desea derivar el Paciente: <b class="text-primary"> {{ $paciente->fullName}} </b></h2>
                 
 
                 <div class="row">

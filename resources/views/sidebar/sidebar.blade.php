@@ -144,22 +144,24 @@
                     </a>
                 </li>
 
-                <li class="sidebar-label pt15">Pacientes</li>
-                <li>
-                    <a class="accordion-toggle" href="#">
-                        <span class="glyphicons glyphicons-notes_2"></span>
-                        <span class="sidebar-title">Admición</span>
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="nav sub-nav">
-                        <li>
-                            <a href="{!! route('pacientescreate')!!}">
-                                <span class="fa fa-caret-right text-primary"></span> Ingreso </a>
-                        </li>
-                    </ul>
-                </li>
+                @if(Auth::user()->hasRole('admision'))
+                    <li class="sidebar-label pt15">Pacientes</li>
+                    <li>
+                        <a class="accordion-toggle" href="#">
+                            <span class="glyphicons glyphicons-notes_2"></span>
+                            <span class="sidebar-title">Admición</span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="nav sub-nav">
+                            <li>
+                                <a href="{!! route('pacientescreate')!!}">
+                                    <span class="fa fa-caret-right text-primary"></span> Ingreso </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
 
-
+                @if(Auth::user()->hasRole('admin','admision','odontologia','oftalmologia','ginecologia','obstetricia','psicologia','nutricionista','radiologia'))
                 <!-- sidebar resources -->
                 <li class="sidebar-label pt20">Medicos</li>
                 <li>
@@ -169,320 +171,323 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="nav sub-nav">
-                        <li>
-                            <a href="{!! route('medicaindex') !!}">
-                                <span class="glyphicons glyphicons-warning_sign"></span> Clínica médica </a>
-                        </li>
-                        <li>
-                            <a href="{!! route('psicologiaindex') !!}">
-                                <span class="glyphicons glyphicons-dislikes"></span> Psicólogía </a>
-                        </li>
-                        <li>
-                            <a href="{!! route('cardiologiaindex') !!}">
-                                <span class="glyphicons glyphicons-macbook"></span> Cardiología </a>
-                        </li>
-                        <li>
-                            <a href="{!! route('otorrinolaringologiaindex')!!}">
-                                <span class="glyphicons glyphicons-check"></span> Otorrinolaringología </a>
-                        </li>
-                        <li>
-                            <a href="{!! route('neurologiaindex')!!}">
-                                <span class="glyphicons glyphicons-adjust_alt"></span> Neurología </a>
-                        </li>
-                        <li>
-                            <a href="{!! route('oftalmologiaindex')!!}">
-                                <span class="glyphicons glyphicons-podium"></span> Oftalmología </a>
-                        </li>
-                        <li>
-                            <a href="{!! route('odontologiaindex') !!}">
-                                <span class="glyphicons glyphicons-fabric"></span> Odontología </a>
-                        </li>
-                        <li>
-                            <a href="{!! route('traumatologiaindex')!!}">
-                                <span class="glyphicons glyphicons-more_items"></span> Traumatología </a>
-                        </li>
-                        <li>
-                            <a href="{!! route('ginecologiaindex')!!} ">
-                                <span class="glyphicons glyphicons-rabbit"></span> Ginecología </a>
-                        </li>
+                        @foreach(\app\Entities\Especialidad::all() as $especialidad)
+                            <li>
+                                <a href="{!! route('especialidadindex',$especialidad->id) !!}">
+                                    <span class="fa fa-stethoscope"></span> {!! $especialidad->especialidad !!} </a>
+                            </li>
+                        @endforeach
+                        {{--<li>--}}
+                            {{--<a href="{!! route('psicologiaindex') !!}">--}}
+                                {{--<span class="glyphicons glyphicons-dislikes"></span> Psicólogía </a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a href="{!! route('cardiologiaindex') !!}">--}}
+                                {{--<span class="glyphicons glyphicons-macbook"></span> Cardiología </a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a href="{!! route('otorrinolaringologiaindex')!!}">--}}
+                                {{--<span class="glyphicons glyphicons-check"></span> Otorrinolaringología </a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a href="{!! route('neurologiaindex')!!}">--}}
+                                {{--<span class="glyphicons glyphicons-adjust_alt"></span> Neurología </a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a href="{!! route('oftalmologiaindex')!!}">--}}
+                                {{--<span class="glyphicons glyphicons-podium"></span> Oftalmología </a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a href="{!! route('odontologiaindex') !!}">--}}
+                                {{--<span class="glyphicons glyphicons-fabric"></span> Odontología </a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a href="{!! route('traumatologiaindex')!!}">--}}
+                                {{--<span class="glyphicons glyphicons-more_items"></span> Traumatología </a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a href="{!! route('ginecologiaindex')!!} ">--}}
+                                {{--<span class="glyphicons glyphicons-rabbit"></span> Ginecología </a>--}}
+                        {{--</li>--}}
                     </ul>
                 </li>
-                <li>
-                    <a class="accordion-toggle menu-open" href="#">
-                        <span class="glyphicons glyphicons-hdd"></span>
-                        <span class="sidebar-title">Form Elements</span>
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="nav sub-nav">
-                        <li class="active">
-                            <a href="#">
-                                <span class="glyphicons glyphicons-pen"></span> Inputs </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="glyphicons glyphicons-text_height"></span> Typography </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="glyphicons glyphicons-book_open"></span> Editors </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="glyphicons glyphicons-tree_conifer"></span> Treeview </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="glyphicons glyphicons-sort"></span> Nestable </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="glyphicons glyphicons-cloud-upload"></span> Uploaders </a>
-                        </li>
-                        <li class="hidden">
-                            <a class="accordion-toggle" href="#">
-                                <span class="glyphicons glyphicons-more_items"></span> Editors
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="nav sub-nav">
-                                <li>
-                                    <a href="#">
-                                        <span class="glyphicons glyphicons-flash"></span> Ckeditor </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="glyphicons glyphicons-flash"></span> Markdown </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="glyphicons glyphicons-flash"></span> Summernote </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="glyphicons glyphicons-flash"></span> X-Editable </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="glyphicons glyphicons-crown"></span> Notifications </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="glyphicons glyphicons-retweet"></span> Content Sliders </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="glyphicons glyphicons-show_big_thumbnails"></span> Grid </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="accordion-toggle" href="#">
-                        <span class="glyphicons glyphicons-stopwatch"></span>
-                        <span class="sidebar-title">Plugins</span>
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="nav sub-nav">
-                        <li>
-                            <a class="accordion-toggle" href="#">
-                                <span class="glyphicons glyphicons-globe"></span> Maps
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="nav sub-nav">
-                                <li>
-                                    <a href="#">Admin Maps</a>
-                                </li>
-                                <li>
-                                    <a href="#">Basic Maps</a>
-                                </li>
-                                <li>
-                                    <a href="#">Vector Maps</a>
-                                </li>
-                                <li>
-                                    <a href="#">Full Map</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a class="accordion-toggle" href="#">
-                                <span class="glyphicons glyphicons-charts"></span> Charts
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="nav sub-nav">
-                                <li>
-                                    <a href="#">Highcharts</a>
-                                </li>
-                                <li>
-                                    <a href="#">D3 Charts</a>
-                                </li>
-                                <li>
-                                    <a href="#">Flot Charts</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a class="accordion-toggle" href="#">
-                                <span class="glyphicons glyphicons-table"></span> Tables
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="nav sub-nav">
-                                <li>
-                                    <a href="#"> Basic </a>
-                                </li>
-                                <li>
-                                    <a href="#"> Formatted Rows </a>
-                                </li>
-                                <li>
-                                    <a href="#"> DataTables </a>
-                                </li>
-                                <li>
-                                    <a href="#"> Pricing Tables </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="accordion-toggle" href="#">
-                        <span class="glyphicons glyphicons-more_items"></span>
-                        <span class="sidebar-title">Pages</span>
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="nav sub-nav">
-                        <li>
-                            <a class="accordion-toggle" href="#">
-                                <span class="glyphicons glyphicons-cogwheels"></span> Utility
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="nav sub-nav">
-                                <li>
-                                    <a href="#"> Login </a>
-                                </li>
-                                <li>
-                                    <a href="#"> Register </a>
-                                </li>
-                                <li>
-                                    <a href="#"> Screenlock </a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_blank"> Forgotten Password </a>
-                                </li>
-                                <li>
-                                    <a href="#"> 404 Error </a>
-                                </li>
-                                <li>
-                                    <a href="#"> 500 Error </a>
-                                </li>
-                                <li>
-                                    <a href="#"> 404 Error Alt </a>
-                                </li>
-                                <li>
-                                    <a href="#"> 500 Error Alt </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a class="accordion-toggle" href="#">
-                                <span class="glyphicons glyphicons-imac"></span> Basic
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="nav sub-nav">
-                                <li>
-                                    <a href="#"> Calendar </a>
-                                </li>
-                                <li>
-                                    <a href="#"> Profile </a>
-                                </li>
-                                <li>
-                                    <a href="#"> Timeline Split </a>
-                                </li>
-                                <li>
-                                    <a href="#"> Timeline Single </a>
-                                </li>
-                                <li>
-                                    <a href="#"> FAQ Page </a>
-                                </li>
-                                <li>
-                                    <a href="#"> Messages </a>
-                                </li>
-                                <li>
-                                    <a href="#"> Messages Alt </a>
-                                </li>
-                                <li>
-                                    <a href="#"> Gallery </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a class="accordion-toggle" href="#">
-                                <span class="glyphicons glyphicons-usd"></span> Misc
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="nav sub-nav">
-                                <li>
-                                    <a href="#"> Printable Invoice </a>
-                                </li>
-                                <li>
-                                    <a href="#"> Blank </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
+                @endif
+                {{--<li>--}}
+                    {{--<a class="accordion-toggle menu-open" href="#">--}}
+                        {{--<span class="glyphicons glyphicons-hdd"></span>--}}
+                        {{--<span class="sidebar-title">Form Elements</span>--}}
+                        {{--<span class="caret"></span>--}}
+                    {{--</a>--}}
+                    {{--<ul class="nav sub-nav">--}}
+                        {{--<li class="active">--}}
+                            {{--<a href="#">--}}
+                                {{--<span class="glyphicons glyphicons-pen"></span> Inputs </a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a href="#">--}}
+                                {{--<span class="glyphicons glyphicons-text_height"></span> Typography </a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a href="#">--}}
+                                {{--<span class="glyphicons glyphicons-book_open"></span> Editors </a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a href="#">--}}
+                                {{--<span class="glyphicons glyphicons-tree_conifer"></span> Treeview </a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a href="#">--}}
+                                {{--<span class="glyphicons glyphicons-sort"></span> Nestable </a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a href="#">--}}
+                                {{--<span class="glyphicons glyphicons-cloud-upload"></span> Uploaders </a>--}}
+                        {{--</li>--}}
+                        {{--<li class="hidden">--}}
+                            {{--<a class="accordion-toggle" href="#">--}}
+                                {{--<span class="glyphicons glyphicons-more_items"></span> Editors--}}
+                                {{--<span class="caret"></span>--}}
+                            {{--</a>--}}
+                            {{--<ul class="nav sub-nav">--}}
+                                {{--<li>--}}
+                                    {{--<a href="#">--}}
+                                        {{--<span class="glyphicons glyphicons-flash"></span> Ckeditor </a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#">--}}
+                                        {{--<span class="glyphicons glyphicons-flash"></span> Markdown </a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#">--}}
+                                        {{--<span class="glyphicons glyphicons-flash"></span> Summernote </a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#">--}}
+                                        {{--<span class="glyphicons glyphicons-flash"></span> X-Editable </a>--}}
+                                {{--</li>--}}
+                            {{--</ul>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a href="#">--}}
+                                {{--<span class="glyphicons glyphicons-crown"></span> Notifications </a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a href="#">--}}
+                                {{--<span class="glyphicons glyphicons-retweet"></span> Content Sliders </a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a href="#">--}}
+                                {{--<span class="glyphicons glyphicons-show_big_thumbnails"></span> Grid </a>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<a class="accordion-toggle" href="#">--}}
+                        {{--<span class="glyphicons glyphicons-stopwatch"></span>--}}
+                        {{--<span class="sidebar-title">Plugins</span>--}}
+                        {{--<span class="caret"></span>--}}
+                    {{--</a>--}}
+                    {{--<ul class="nav sub-nav">--}}
+                        {{--<li>--}}
+                            {{--<a class="accordion-toggle" href="#">--}}
+                                {{--<span class="glyphicons glyphicons-globe"></span> Maps--}}
+                                {{--<span class="caret"></span>--}}
+                            {{--</a>--}}
+                            {{--<ul class="nav sub-nav">--}}
+                                {{--<li>--}}
+                                    {{--<a href="#">Admin Maps</a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#">Basic Maps</a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#">Vector Maps</a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#">Full Map</a>--}}
+                                {{--</li>--}}
+                            {{--</ul>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a class="accordion-toggle" href="#">--}}
+                                {{--<span class="glyphicons glyphicons-charts"></span> Charts--}}
+                                {{--<span class="caret"></span>--}}
+                            {{--</a>--}}
+                            {{--<ul class="nav sub-nav">--}}
+                                {{--<li>--}}
+                                    {{--<a href="#">Highcharts</a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#">D3 Charts</a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#">Flot Charts</a>--}}
+                                {{--</li>--}}
+                            {{--</ul>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a class="accordion-toggle" href="#">--}}
+                                {{--<span class="glyphicons glyphicons-table"></span> Tables--}}
+                                {{--<span class="caret"></span>--}}
+                            {{--</a>--}}
+                            {{--<ul class="nav sub-nav">--}}
+                                {{--<li>--}}
+                                    {{--<a href="#"> Basic </a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#"> Formatted Rows </a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#"> DataTables </a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#"> Pricing Tables </a>--}}
+                                {{--</li>--}}
+                            {{--</ul>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<a class="accordion-toggle" href="#">--}}
+                        {{--<span class="glyphicons glyphicons-more_items"></span>--}}
+                        {{--<span class="sidebar-title">Pages</span>--}}
+                        {{--<span class="caret"></span>--}}
+                    {{--</a>--}}
+                    {{--<ul class="nav sub-nav">--}}
+                        {{--<li>--}}
+                            {{--<a class="accordion-toggle" href="#">--}}
+                                {{--<span class="glyphicons glyphicons-cogwheels"></span> Utility--}}
+                                {{--<span class="caret"></span>--}}
+                            {{--</a>--}}
+                            {{--<ul class="nav sub-nav">--}}
+                                {{--<li>--}}
+                                    {{--<a href="#"> Login </a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#"> Register </a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#"> Screenlock </a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#" target="_blank"> Forgotten Password </a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#"> 404 Error </a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#"> 500 Error </a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#"> 404 Error Alt </a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#"> 500 Error Alt </a>--}}
+                                {{--</li>--}}
+                            {{--</ul>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a class="accordion-toggle" href="#">--}}
+                                {{--<span class="glyphicons glyphicons-imac"></span> Basic--}}
+                                {{--<span class="caret"></span>--}}
+                            {{--</a>--}}
+                            {{--<ul class="nav sub-nav">--}}
+                                {{--<li>--}}
+                                    {{--<a href="#"> Calendar </a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#"> Profile </a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#"> Timeline Split </a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#"> Timeline Single </a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#"> FAQ Page </a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#"> Messages </a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#"> Messages Alt </a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#"> Gallery </a>--}}
+                                {{--</li>--}}
+                            {{--</ul>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a class="accordion-toggle" href="#">--}}
+                                {{--<span class="glyphicons glyphicons-usd"></span> Misc--}}
+                                {{--<span class="caret"></span>--}}
+                            {{--</a>--}}
+                            {{--<ul class="nav sub-nav">--}}
+                                {{--<li>--}}
+                                    {{--<a href="#"> Printable Invoice </a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a href="#"> Blank </a>--}}
+                                {{--</li>--}}
+                            {{--</ul>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
 
-                <!-- sidebar bullets -->
-                <li class="sidebar-label pt20">Projects</li>
-                <li class="sidebar-proj">
-                    <a href="#projectOne">
-                        <span class="fa fa-dot-circle-o text-primary"></span>
-                        <span class="sidebar-title">Website Redesign</span>
-                    </a>
-                </li>
-                <li class="sidebar-proj">
-                    <a href="#projectTwo">
-                        <span class="fa fa-dot-circle-o text-info"></span>
-                        <span class="sidebar-title">Ecommerce Panel</span>
-                    </a>
-                </li>
-                <li class="sidebar-proj">
-                    <a href="#projectTwo">
-                        <span class="fa fa-dot-circle-o text-danger"></span>
-                        <span class="sidebar-title">Adobe Mockup</span>
-                    </a>
-                </li>
-                <li class="sidebar-proj">
-                    <a href="#projectThree">
-                        <span class="fa fa-dot-circle-o text-warning"></span>
-                        <span class="sidebar-title">SSD Upgrades</span>
-                    </a>
-                </li>
+                {{--<!-- sidebar bullets -->--}}
+                {{--<li class="sidebar-label pt20">Projects</li>--}}
+                {{--<li class="sidebar-proj">--}}
+                    {{--<a href="#projectOne">--}}
+                        {{--<span class="fa fa-dot-circle-o text-primary"></span>--}}
+                        {{--<span class="sidebar-title">Website Redesign</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
+                {{--<li class="sidebar-proj">--}}
+                    {{--<a href="#projectTwo">--}}
+                        {{--<span class="fa fa-dot-circle-o text-info"></span>--}}
+                        {{--<span class="sidebar-title">Ecommerce Panel</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
+                {{--<li class="sidebar-proj">--}}
+                    {{--<a href="#projectTwo">--}}
+                        {{--<span class="fa fa-dot-circle-o text-danger"></span>--}}
+                        {{--<span class="sidebar-title">Adobe Mockup</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
+                {{--<li class="sidebar-proj">--}}
+                    {{--<a href="#projectThree">--}}
+                        {{--<span class="fa fa-dot-circle-o text-warning"></span>--}}
+                        {{--<span class="sidebar-title">SSD Upgrades</span>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
 
-                <!-- sidebar progress bars -->
-                <li class="sidebar-label pt25 pb10">User Stats</li>
-                <li class="sidebar-stat mb10">
-                    <a href="#projectOne" class="fs11">
-                        <span class="fa fa-inbox text-info"></span>
-                        <span class="sidebar-title text-muted">Email Storage</span>
-                        <span class="pull-right mr20 text-muted">35%</span>
-                        <div class="progress progress-bar-xs ml20 mr20">
-                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 35%">
-                                <span class="sr-only">35% Complete</span>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li class="sidebar-stat mb10">
-                    <a href="#projectOne" class="fs11">
-                        <span class="fa fa-dropbox text-warning"></span>
-                        <span class="sidebar-title text-muted">Bandwidth</span>
-                        <span class="pull-right mr20 text-muted">58%</span>
-                        <div class="progress progress-bar-xs ml20 mr20">
-                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 58%">
-                                <span class="sr-only">58% Complete</span>
-                            </div>
-                        </div>
-                    </a>
-                </li>
+                {{--<!-- sidebar progress bars -->--}}
+                {{--<li class="sidebar-label pt25 pb10">User Stats</li>--}}
+                {{--<li class="sidebar-stat mb10">--}}
+                    {{--<a href="#projectOne" class="fs11">--}}
+                        {{--<span class="fa fa-inbox text-info"></span>--}}
+                        {{--<span class="sidebar-title text-muted">Email Storage</span>--}}
+                        {{--<span class="pull-right mr20 text-muted">35%</span>--}}
+                        {{--<div class="progress progress-bar-xs ml20 mr20">--}}
+                            {{--<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 35%">--}}
+                                {{--<span class="sr-only">35% Complete</span>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
+                {{--<li class="sidebar-stat mb10">--}}
+                    {{--<a href="#projectOne" class="fs11">--}}
+                        {{--<span class="fa fa-dropbox text-warning"></span>--}}
+                        {{--<span class="sidebar-title text-muted">Bandwidth</span>--}}
+                        {{--<span class="pull-right mr20 text-muted">58%</span>--}}
+                        {{--<div class="progress progress-bar-xs ml20 mr20">--}}
+                            {{--<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 58%">--}}
+                                {{--<span class="sr-only">58% Complete</span>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
             </ul>
             <div class="sidebar-toggle-mini">
                 <a href="#">

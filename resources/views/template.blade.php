@@ -30,18 +30,18 @@
 
     <link rel="stylesheet" href="assets/fonts/icomoon/icomoon.css">
 
-    <link rel="stylesheet" type="text/css" href="estilos.css">
 
     @yield('css')
 
+    <link rel="stylesheet" type="text/css" href="estilos.css">
     <!-- jQuery -->
     {{--<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>--}}
     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
     <!-- Bootstrap -->
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
     {{--<script type="text/javascript" src="vendor/jquery/jquery_ui/jquery-ui.min.js"></script>--}}
     <script type="text/javascript" src="js/jquery-ui.js"></script>
 
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <!-- Google Map API -->
     {{--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&signed_in=true&libraries=places&callback=initMap"></script>--}}
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;sensor=true&amp;language=es&amp;components=country:AR"></script>

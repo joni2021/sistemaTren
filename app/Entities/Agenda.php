@@ -18,11 +18,19 @@ class Agenda extends Model
     }
 
     //Accessors
-    public function setFechaPartidaAttribute($dato){
-        $this->attributes['fecha'] = date("Y-m-d",strtotime($dato));
+    public function setFechaInicioAttribute($dato){
+        $this->attributes['fecha_inicio'] = date("Y-m-d",strtotime($dato));
     }
 
-    public function getFechaAttribute($dato){
-        return date("d-m-Y",strtotime($dato));
+    public function setFechaFinAttribute($dato){
+        $this->attributes['fecha_fin'] = date("Y-m-d",strtotime($dato));
     }
+
+//    public function getFechaInicioAttribute($dato){
+//        return date("d-m-Y",strtotime($dato));
+//    }
+//
+//    public function getFechaFinAttribute($dato){
+//        return date("d-m-Y",strtotime($dato));
+//    }
 }

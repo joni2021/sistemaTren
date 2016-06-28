@@ -8,6 +8,15 @@
     <!-- Admin Forms CSS -->
     <link rel="stylesheet" type="text/css" href="assets/admin-tools/admin-plugins/admin-modal/adminmodal.css">
     <link rel="stylesheet" type="text/css" href="vendor/plugins/daterange/daterangepicker.css">
+
+    <style>
+        #comision+.btn-group{
+            width:100%;
+        }
+
+
+    </style>
+
 @endsection
 @section('content')
         <!-- Start: Content -->
@@ -27,60 +36,55 @@
                     </div>
 
 
-{{--                    {!! dd($comision->first()->Address()) !!}--}}
-                    @if(is_array($comision))
+                    @if(isset($comisiones))
                         <h4 class="pl10 mt25 fs13"> Seleccionar comisión</h4>
-                        {!! Form::open(['route' => 'comisionesstore', 'method' => 'POST','id' => 'account2']) !!}
-                            <div class="form-group">
-                                {!! Form::select('comision',$comision,'comision', ['class' => 'form-control','id' => 'comision']) !!}
-                                {{--<button type="submit" class="form-control">--}}
-                                    {{--<span class="fa fa-search"></span>--}}
-                                {{--</button>--}}
-                            </div>
+                        {!! Form::open(['route' => 'agendaselectComision', 'method' => 'GET','id' => 'account2']) !!}
+                            {!! Form::hidden("com_actual",$comision->id) !!}
+                        <div class="form-group">
+                            {!! Form::select('comision_id',$comisiones,'comision_id', ['class' => 'form-control','id' => 'comision']) !!}
+                        </div>
                         {!! Form::close() !!}
-                    @else
-                        <h4 class="pl10 mt25 fs13"> Eventos en <strong>{!! $comision->first()->Address() !!}</strong>
-                            @if(Auth::user()->hasRole('admin'))
-                                <a id="compose-event-btn" type="button" class="btn btn-info btn-xs btn-rounded" data-toggle="modal" data-target="#calendarEvent" data-effect="mfp-flipInY"><span class="fa fa-plus"></span></a>
 
-                            @endif
-                        </h4>
                     @endif
-
+                    <h4 class="pl10 mt25 fs13"> Eventos en <strong>{!! $comision->Address() !!}</strong>
+                        @if(Auth::user()->hasRole('admin'))
+                            <a id="compose-event-btn" type="button" class="btn btn-info btn-xs btn-rounded" data-toggle="modal" data-target="#calendarEvent" data-effect="mfp-flipInY"><span class="fa fa-plus"></span></a>
+                        @endif
+                    </h4>
 
 
 
                     <hr class="mv15 br-light">
-                    <div id="external-events" class="bg-dotted">
+                    {{--<div id="external-events" class="bg-dotted">--}}
 
-                        <!-- Standard Events -->
-                        <div class='fc-event fc-event-primary' data-event="primary">
-                            <div class="fc-event-icon">
-                                <span class="fa fa-exclamation"></span>
-                            </div>
-                            <div class="fc-event-desc"><b>2:30am - </b>Meeting With Mike</div>
-                        </div>
-                        <div class='fc-event fc-event-info' data-event="info">
-                            <div class="fc-event-icon">
-                                <span class="fa fa-info"></span>
-                            </div>
-                            <div class="fc-event-desc"><b>2:30am - </b>Meeting With Mike</div>
-                        </div>
-                        <div class='fc-event fc-event-success' data-event="success">
-                            <div class="fc-event-icon">
-                                <span class="fa fa-check"></span>
-                            </div>
-                            <div class="fc-event-desc"><b>2:30am - </b>Meeting With Mike</div>
-                        </div>
-                        <div class='fc-event fc-event-warning' data-event="warning">
-                            <div class="fc-event-icon">
-                                <span class="fa fa-question"></span>
-                            </div>
-                            <div class="fc-event-desc"><b>2:30am - </b>Meeting With Mike</div>
-                        </div>
+                        {{--<!-- Standard Events -->--}}
+                        {{--<div class='fc-event fc-event-primary' data-event="primary">--}}
+                            {{--<div class="fc-event-icon">--}}
+                                {{--<span class="fa fa-exclamation"></span>--}}
+                            {{--</div>--}}
+                            {{--<div class="fc-event-desc"><b>2:30am - </b>Meeting With Mike</div>--}}
+                        {{--</div>--}}
+                        {{--<div class='fc-event fc-event-info' data-event="info">--}}
+                            {{--<div class="fc-event-icon">--}}
+                                {{--<span class="fa fa-info"></span>--}}
+                            {{--</div>--}}
+                            {{--<div class="fc-event-desc"><b>2:30am - </b>Meeting With Mike</div>--}}
+                        {{--</div>--}}
+                        {{--<div class='fc-event fc-event-success' data-event="success">--}}
+                            {{--<div class="fc-event-icon">--}}
+                                {{--<span class="fa fa-check"></span>--}}
+                            {{--</div>--}}
+                            {{--<div class="fc-event-desc"><b>2:30am - </b>Meeting With Mike</div>--}}
+                        {{--</div>--}}
+                        {{--<div class='fc-event fc-event-warning' data-event="warning">--}}
+                            {{--<div class="fc-event-icon">--}}
+                                {{--<span class="fa fa-question"></span>--}}
+                            {{--</div>--}}
+                            {{--<div class="fc-event-desc"><b>2:30am - </b>Meeting With Mike</div>--}}
+                        {{--</div>--}}
 
 
-                    </div>
+                    {{--</div>--}}
 
                     {{--<h4 class="ph10 mt25 mb20"> Labels </h4>--}}
                     {{--<hr class="mn br-light">--}}
@@ -135,9 +139,8 @@
 
 @endsection
 
-@if(!is_array($comision))
-    @if(Auth::user()->hasRole('admin'))
-        @section('modal')
+@if(Auth::user()->hasRole('admin'))
+    @section('modal')
             <div id="calendarEvent" class="modal fade admin-form" role="dialog">
                 <div class="modal-dialog">
 
@@ -152,17 +155,19 @@
                                 </div>
                                 <!-- end .form-header section -->
 
-                                {!! Form::model($comision,['route' => 'comisionesstore', 'method' => 'POST','id' => 'calendarEventForm']) !!}
+                                <form action="{!! route("agendastore") !!}" method="POST" id="calendarEventForm">
+                                    <input type="hidden" name="comision_id" value="{!! $comision->id !!}">
+                                    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                                     <div class="panel-body p25">
                                         <div class="section-divider mt10 mb40">
-                                            <span>{!! $comision->first()->Address() !!}</span>
+                                            <span>{!! $comision->Address() !!}</span>
                                         </div>
                                         <!-- .section-divider -->
 
                                         <div class="section row">
                                             <div class="col-xs-12">
                                                 <label for="daterange" class="field prepend-icon">
-                                                    {!! Form::text('daterange',"",array('class' => 'form-control pull-right active gui-input','id' => 'daterangepicker','placeholder' => 'Ingrese fecha del evento'))!!}
+                                                    <input type="text" name="daterange" class="form-control pull-right active gui-input" id="daterangepicker" placeholder="Ingrese fecha del evento">
                                                     <label class="field-icon"><i class="fa fa-calendar"></i>
                                                     </label>
                                                 </label>
@@ -173,8 +178,8 @@
 
                                         <div class="section">
                                             <label class="field prepend-icon">
-                                                {!! Form::textarea('evento',['class' => 'gui-textarea', 'placeholder' => 'Descripción']) !!}
-                                                {{--<textarea class="gui-textarea" id="comment" name="comment" placeholder="Descripción"></textarea>--}}
+                                                <textarea name="evento" id="evento" cols="30" rows="10" class="gui-textarea" placeholder="Descripción"></textarea>
+
                                                 <label for="comment" class="field-icon"><i class="fa fa-comments"></i>
                                                 </label>
                                             </label>
@@ -187,16 +192,19 @@
                                         <button type="submit" class="button btn-primary">Crear evento</button>
                                     </div>
                                     <!-- end .form-footer section -->
-                                {!! Form::close() !!}
+                                </form>
+{{--                                {!! Form::close() !!}--}}
                             </div>
                         </div>
                     </div>
 
                 </div>
             </div>
-        @endsection
-    @endif
+    @endsection
 @endif
+
+
+
 
 
 @section('js')
@@ -311,10 +319,10 @@
                     }, 3500);
                 });
             }
-            @if(!is_array($comision))
-                @if($comision->first()->Agenda->count() > 0)
+
+                @if($comision->Agenda->count() > 0)
                     ,events: [
-                    @foreach($comision->first()->Agenda as $i => $a)
+                    @foreach($comision->Agenda as $i => $a)
                         @if($i > 0)
                             ,
                         @endif
@@ -328,7 +336,7 @@
                     @endforeach
                     ]
                 @endif
-            @endif
+
         });
 
 
@@ -353,7 +361,30 @@
                 }
         );
 
-        $("#comision").multiselect();
+        $("#comision").multiselect({
+            enableFiltering: true,
+            enableCaseInsensitiveFiltering: true,
+            onChange: function(option, checked) {
+                if (checked) {
+                    if($(option).val() != 0){
+                        $("#account2").submit();
+                        $("#comision").multiselect('disable');
+                    }
+                }
+            }
+        });
+
+        var com_actual = $("#account2").find("input[name='com_actual']").val();
+        var options = $("#comision option");
+
+        $.each(options, function(index, val){
+
+            if($(options)[index].value == com_actual)
+            {
+                $(this).attr('selected','selected');
+                $("#comision").multiselect('refresh');
+            }
+        });
 
 
 

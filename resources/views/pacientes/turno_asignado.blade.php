@@ -15,13 +15,13 @@
                     <div class="panel">
                         <div class="panel-heading">
                                 <span class="panel-icon pl5"><i class="fa fa-pencil"></i> </span>
-                            <span class="panel-title">Apellido y Nombre: {{ $turno->Paciente->getFullNamePacienteAttribute() }}</span>
+                            <span class="panel-title">Apellido y Nombre: {{ $turno->Paciente->fullName }}</span>
                         </div>
                         <div class="panel-body">
                             <ul class="fs14 list-unstyled list-spacing-10 mb10">
                                 <li>
                                     <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>
-                                    <b> Apellido y Nombre:</b> {{ $turno->Paciente->getFullNamePacienteAttribute() }}
+                                    <b> Apellido y Nombre:</b> {{ $turno->Paciente->fullName }}
                                 </li>
                                 <li>
                                     <i class="fa fa-exclamation-circle text-warning fa-lg pr10"></i>

@@ -70,7 +70,7 @@
                                     <input type="radio" name="sexo" id="inlineRadio5" value="1">Masculino</label>
 
                                     <label class="radio-inline mr10">
-                                    <input type="radio" name="tipo_dni" id="inlineRadio5" value="2">Femenino</label>
+                                    <input type="radio" name="sexo" id="inlineRadio5" value="2">Femenino</label>
                             </div>
                         </div>
                         <div class="form-group">
@@ -86,15 +86,15 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="id_nacionalidad" class="col-lg-3 control-label">Nacionalidad:</label>
+                            <label for="nacionalidad" class="col-lg-3 control-label">Nacionalidad:</label>
                             <div class="col-lg-8">
-                                <input type="text" class="form-control" id="id_nacionalidad" name="id_nacionalidad" >
+                                <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" >
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="id_lugar_nacimiento" class="col-lg-3 control-label">Lugar de Nacimiento:</label>
+                            <label for="lugar_nacimiento" class="col-lg-3 control-label">Lugar de Nacimiento:</label>
                             <div class="col-lg-8">
-                                <input type="text" class="form-control" id="id_lugar_nacimiento" name="id_lugar_nacimiento" >
+                                <input type="text" class="form-control" id="lugar_nacimiento" name="lugar_nacimiento" >
                             </div>
                         </div>
 
@@ -145,7 +145,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="ocupacion" class="col-lg-3 control-label">Ocupaciión:</label>
+                            <label for="ocupacion" class="col-lg-3 control-label">Ocupación:</label>
                             <div class="col-lg-8">
                                 <input type="text" class="form-control" id="ocupacion" name="ocupacion" >
                             </div>

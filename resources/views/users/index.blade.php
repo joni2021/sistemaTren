@@ -23,7 +23,7 @@
                                     <td> {!! $user->email !!} </td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="#" class="btn btn-danger"><i class="fa fa-remove"></i> </a>
+                                            <a href="{!! route('usersdelete',$user->id) !!}" class="btn btn-danger"><i class="fa fa-remove"></i> </a>
 
                                             <a href="{{ route('usersedit', $user->id) }}" class="btn btn-system"><i class="fa fa-edit"></i> </a>
 
